@@ -58,6 +58,6 @@ PROB = normalizaUsandoD(PROB,D)
 integral(p, PROB)
 #[1] 1 uhuulll
 
-# pontos da nova dist
+# plotando os pontos da nova dist no mesmo gráfico anterior
 points(PROB, col="blue", pch=19, type='b')
 
