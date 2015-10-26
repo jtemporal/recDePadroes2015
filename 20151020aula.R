@@ -20,7 +20,9 @@ calculaProb <- function(p, n, k){
 prob = calculaProb(p, n, k)
 
 # primeiro grafico
+# pdf("plot1.pdf")
 plot(prob, type = 'b', col = "red", pch = 19)
+#dev.off()
 
 # das aulas anteriores, calcula a integral
 integral = function(x,y){
@@ -46,6 +48,7 @@ integral(p, prob)
 # deu certo uhuuulll
 
 # plotemos:
+# pdf("20151020aulaSegundoPlot.pdf")
 plot(prob, type = 'b', col = "red", pch = 19, ylim=c(0, 30)) #repare na mudanca da escala
 
 # agora fazendo pra mesma proporcao porem numa amostra maior:
@@ -60,4 +63,4 @@ integral(p, PROB)
 
 # plotando os pontos da nova dist no mesmo gráfico anterior
 points(PROB, col="blue", pch=19, type='b')
-
+# dev.off()
