@@ -32,4 +32,8 @@ fazMsk = function(p1,p2, x1,x2,pontos){
 }
 
 
+A = fazMsk(p1,p2,x1,x2,100)
 
+# pdf("20151020aulaImage.pdf")
+image(A)
+# dev.off()
