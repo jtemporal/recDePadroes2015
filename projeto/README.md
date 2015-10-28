@@ -3,6 +3,6 @@ Contribuidores:
 
 Jessica Temporal
 
-Raissa Poch
+Raissa de F. Poch
 
 Wilbert Dener
