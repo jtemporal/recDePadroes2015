@@ -34,7 +34,6 @@ getLinkMatrix <- function(gse){
 gse <- "GSE51808"
 link <- getLinkMatrix(gse)
 
-
 downloadMatrix <- function(gseList){
 
     for (i in 1:length(gseList)){
