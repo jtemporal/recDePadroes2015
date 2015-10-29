@@ -1,4 +1,5 @@
 # comentar
+
 getLinkMatrix <- function(gse){
 	
 	l <- list("null")
