@@ -2,7 +2,7 @@
 
 Contém todas as funções escritas pela equipe.
 
-Cada função se encontra em um arquivo separado e este arquivo do tipo .R traz o código implementado e comentários necessários para o entendimento da função naquele arquivo.
+Cada função se encontra em um arquivo separado e este arquivo do tipo .R traz o código implementado e comentários necessários para o entendimento da função.
 
 # Comentários explicando as funções
 devem seguir o modelo abaixo:
