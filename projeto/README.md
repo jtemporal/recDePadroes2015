@@ -1,17 +1,12 @@
-# Projeto para Rec de Padroes
+# Projeto para disciplina de Reconhecimento de Padroes 2015
+
+TODO
+- [ ] adicionar descricao do projeto
+- [ ] terminar o projeto
+
 Contribuidores:
+-------------------
 
-Jessica Temporal
-
-Raissa de F. Poch
-
-Wilbert Dener
-
-
-# Comentarios explicando a função
-devem seguir o modelo abaixo:
-- nome da funcao
-- parametros recebidos
-- o que são os parametros
-- retorno da funcao
-- o que é o retorno
+* [Jessica Temporal](https://github.com/jtemporal)
+* [Raissa de F. Poch](https://github.com/raissapoch)
+* [Wilbert Dener](https://github.com/wilbertdener)

@@ -1,9 +1,5 @@
-# comentar
-
-getLinkMatrix <- function(gse){
-	
+getLinkDownloadMatrix <- function(gse){
 	l <- list("null")
-    
     for (i in seq_along(gse)){
     	url <- paste0( "http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=", gse[i])
     	parseURL <- XML::htmlParse(url)
@@ -16,8 +12,6 @@ getLinkMatrix <- function(gse){
     	aux <- c(link,mat)
     	l[[i]] <- aux
     }
-	
 	return(l)
-	# colocar barra de loading
 }
 
