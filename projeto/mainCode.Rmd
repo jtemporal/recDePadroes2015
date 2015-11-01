@@ -8,7 +8,7 @@ Loading requirements:
 
 ```{r}
 source("Requirements.R")
-source("Funtions.R")
+source("funcoes/Funtions.R")
 ```
 
 gse: # GSE do estudo que queremos fazer download dos dados
