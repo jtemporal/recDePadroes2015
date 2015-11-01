@@ -1,53 +1,24 @@
-# Trabalho de Rec de Padroes
-# Jessica Temporal
-# Raissa Poch
-# Wilbert Dener
+# Bem vindo ao Código Principal do Nosso projeto
+Neste aquivo você encontra um guide line para fazer o download de seus dados de interesse
+assim como fazer uns negócios da hora com eles...
 
-# Requirements:
-# XML
-# RCurl
-# downloader
+Use com moderação e divirta-se
 
-# gse: # GSE do estudo que queremos fazer download dos dados
-# vai retornar o link para download e o nome do objeto para ser salvo
+Loading requirements:
 
-Função getLinkMatrix
 ```{r}
-getLinkMatrix <- function(gse){
-	
-    l <- list("null")
-    
-    for (i in seq_along(gse)){
-
-    	url <- paste0("http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=", gse[i])
-    	parseURL <- XML::htmlParse(url)
-    	links <- XML::xpathSApply(doc, "//a/@href")
-    	link <- links[grep("matrix/", links)]
-    	mat <- RCurl::getURL(link)
-    	mat <- unlist(strsplit(mat, " "))[length(mat)]
-    	mat <- unlist(strsplit(x, "\n"))
-    	link <- paste0(link,mat)
-    	aux <- c(link,mat)
-    	l[[i]] <- aux
-
-    }
-	
-	return(l)
-	# colocar barra de loading
-}
+source("Requirements.R")
+source("Funtions.R")
 ```
+
+gse: # GSE do estudo que queremos fazer download dos dados
+
+vai retornar o link para download e o nome do objeto para ser salvo
+
+```{r}
 gse <- "GSE51808"
 link <- getLinkMatrix(gse)
-
-downloadMatrix <- function(gseList){
-
-    for (i in 1:length(gseList)){
-
-        downloader::download(gseList[[i]][1],gseList[[i]][2])
-
-    }
-
-    return("Todos os downloads foram concluídos")
-}
-
 downloadMatrix(link)
+```
+
+
