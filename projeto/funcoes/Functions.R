@@ -27,6 +27,13 @@ downloadMatrix <- function(gseList){
 	return("Todos os downloads foram concluídos")
 }
 
+# Função findMatrixBegin
+findMatrixBegin <- function(mat){
+    x = readLines(con = mat)
+    lineNum = grep("series_matrix_table_begin",x)
+    return(lineNum)
+}
+
 # Função readMyData
 readMyData <- function(gse){
     tally <- list("null")
@@ -43,3 +50,4 @@ readMyData <- function(gse){
     names(tally) <- name 
     return(tally)
 }
+
