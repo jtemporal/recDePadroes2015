@@ -26,3 +26,20 @@ downloadMatrix <- function(gseList){
 	}
 	return("Todos os downloads foram concluídos")
 }
+
+# Função readMyData
+readMyData <- function(gse){
+    tally <- list("null")
+    for (i in seq_along(gse)){
+	x <- 69 
+	files <- list.files(pattern = gse[i])
+	system(paste0("gunzip ",files)) # esse comando só funciona no linux 
+	files <- list.files(pattern = gse[i])
+        data <- read.table(file = files, header = T, skip = x, fill = T)
+	assign(gse[i], data)
+	tally[[i]] <- data
+    }	
+    name <- ls(pattern = "GSE")
+    names(tally) <- name 
+    return(tally)
+}
