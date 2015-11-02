@@ -19,6 +19,7 @@ vai retornar o link para download e o nome do objeto para ser salvo
 gse <- "GSE51808"
 link <- getLinkDownloadMatrix(gse)
 downloadMatrix(link)
+dados <- readMyData(gse)
 ```
 
 
