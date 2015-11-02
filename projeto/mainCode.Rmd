@@ -1,0 +1,24 @@
+# Bem vindo ao Código Principal do Nosso projeto
+Neste aquivo você encontra um guide line para fazer o download de seus dados de interesse
+assim como fazer uns negócios da hora com eles...
+
+Use com moderação e divirta-se
+
+Loading requirements:
+
+```{r}
+source("Requirements.R")
+source("funcoes/Funtions.R")
+```
+
+gse: # GSE do estudo que queremos fazer download dos dados
+
+vai retornar o link para download e o nome do objeto para ser salvo
+
+```{r}
+gse <- "GSE51808"
+link <- getLinkMatrix(gse)
+downloadMatrix(link)
+```
+
+
