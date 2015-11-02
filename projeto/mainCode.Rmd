@@ -8,7 +8,7 @@ Loading requirements:
 
 ```{r}
 source("Requirements.R")
-source("funcoes/Funtions.R")
+source("funcoes/Functions.R")
 ```
 
 gse: # GSE do estudo que queremos fazer download dos dados
@@ -17,7 +17,7 @@ vai retornar o link para download e o nome do objeto para ser salvo
 
 ```{r}
 gse <- "GSE51808"
-link <- getLinkMatrix(gse)
+link <- getLinkDownloadMatrix(gse)
 downloadMatrix(link)
 ```
 
