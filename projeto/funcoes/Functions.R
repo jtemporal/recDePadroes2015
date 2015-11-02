@@ -9,8 +9,9 @@ getLinkDownloadMatrix <- function(gse){
     	links <- XML::xpathSApply(doc, "//a/@href")
     	link <- links[grep("matrix/", links)]
     	mat <- RCurl::getURL(link)
-    	mat <- unlist(strsplit(mat, " "))[length(mat)]
-    	mat <- unlist(strsplit(x, "\n"))
+    	mat <- unlist(strsplit(mat, " "))
+    	mat <- mat[length(mat)]
+    	mat <- unlist(strsplit(mat, "\n"))
     	link <- paste0(link,mat)
     	aux <- c(link,mat)
     	l[[i]] <- aux
