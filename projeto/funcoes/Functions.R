@@ -1,7 +1,7 @@
 # Functions
 
-# Função getLinkMatrix
-getLinkMatrix <- function(gse){
+# Função getLinkDownloadMatrix
+getLinkDownloadMatrix <- function(gse){
     l <- list("null")
     for (i in seq_along(gse)){
         url <- paste0( "http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=", gse[i])
@@ -18,4 +18,10 @@ getLinkMatrix <- function(gse){
 	return(l)
 }
 
-# Função 
+# Função downloadMatrix
+downloadMatrix <- function(gseList){ 
+	for (i in 1:length(gseList)){
+		downloader::download(gseList[[i]][1],gseList[[i]][2])
+	}
+	return("Todos os downloads foram concluídos")
+}
