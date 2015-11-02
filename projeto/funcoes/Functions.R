@@ -6,7 +6,7 @@ getLinkDownloadMatrix <- function(gse){
     for (i in seq_along(gse)){
         url <- paste0( "http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=", gse[i])
     	parseURL <- XML::htmlParse(url)
-    	links <- XML::xpathSApply(doc, "//a/@href")
+    	links <- XML::xpathSApply(parseURL, "//a/@href")
     	link <- links[grep("matrix/", links)]
     	mat <- RCurl::getURL(link)
     	mat <- unlist(strsplit(mat, " "))
