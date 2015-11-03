@@ -12,3 +12,10 @@ devem seguir o modelo abaixo:
 - o que é cada um dos parametros recebidos
 - o que a função deve retornar
 - o que é esse retorno
+------------------
+# Lista de Funções:
+- [doMeta()]()
+- [downloadMatrix()]()
+- [findMatrixBegin()]()
+- [getLinkDownloadMatrix()]()
+- [readMyData()]()

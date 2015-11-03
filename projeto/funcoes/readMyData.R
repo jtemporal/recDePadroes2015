@@ -25,9 +25,7 @@ readMyData <- function(gse){
 	# tally recebe, na posicao i, os dados do estudo lido
 	tally[[i]] <- data
     }	
-    # lista objetos no ambiente que comecem com a string "GSE"
-    name <- ls(pattern = "GSE")
     # renomeia os niveis da lista para corresponder aos estudos lidas
-    names(tally) <- name 
+    names(tally) <- gse
     return(tally)
 }
