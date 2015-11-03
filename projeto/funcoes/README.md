@@ -12,6 +12,8 @@ devem seguir o modelo abaixo:
 - o que é cada um dos parametros recebidos
 - o que a função deve retornar
 - o que é esse retorno
+
+
 ------------------
 # Lista de Funções:
 - [doMeta()](https://github.com/jtemporal/recDePadroes2015/blob/master/projeto/funcoes/doMeta.R)
