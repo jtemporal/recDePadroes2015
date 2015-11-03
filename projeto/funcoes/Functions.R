@@ -42,8 +42,9 @@ readMyData <- function(gse){
 	files <- list.files(pattern = gse[i])
 	system(paste0("gunzip ",files)) # esse comando só funciona no linux 
 	files <- list.files(pattern = gse[i])
-        data <- read.table(file = files, header = T, skip = x, fill = T)
-	assign(gse[i], data)
+        data <- read.table(file = files, header = T, skip = x, fill = T, blank.lines.skip = T)
+        data <- na.omit(data)
+        assign(gse[i], data)
 	tally[[i]] <- data
     }	
     name <- ls(pattern = "GSE")

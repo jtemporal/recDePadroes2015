@@ -17,7 +17,9 @@ readMyData <- function(gse){
 	system(paste0("gunzip ",files)) # esse comando só funciona no linux muahahaha
 	files <- list.files(pattern = gse[i])
 	# le a matrix de estudo do arquivo
-        data <- read.table(file = files, header = T, skip = x, fill = T)
+        data <- read.table(file = files, header = T, skip = x, fill = T, blank.lines.skip = T)
+	# removendo porssiveis linhas que possuam "NA"
+        data <- na.omit(data)
         # cria um novo objeto com o nome do estudo com os dados da matrix
 	assign(gse[i], data)
 	# tally recebe, na posicao i, os dados do estudo lido
