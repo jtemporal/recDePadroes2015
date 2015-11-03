@@ -16,8 +16,8 @@ source("Requirements.R")
 source("funcoes/Functions.R")
 ```
 
-Para continuar listaremos em um vetor todos os estudos que queremos segue um
-exemplo com um estudo sobre Degue que pode ser encontrado [nesse link](http://www.ncbi.nlm.nih.gov/pmc/articles/PMC4116428/)
+Para continuar listaremos em um vetor todos os estudos que queremos. Como
+exemplo usaremos um artigo sobre Degue que pode ser encontrado [nesse link](http://www.ncbi.nlm.nih.gov/pmc/articles/PMC4116428/) e seus dados podem ser obtidos [nesse link aqui](http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE51808).
 
 No nosso estudo teste, o ID que nos leva ao arquivo 'matrix' é GSE51808. 
 Atribuindo ele como uma string a um vetor e usando as seguintes funções, nós
