@@ -17,14 +17,28 @@ source("funcoes/Functions.R")
 Para continuar listaremos em um vetor todos os estudos que queremos segue um
 exemplo com um estudo sobre Degue que pode ser encontrado [nesse link](http://www.ncbi.nlm.nih.gov/pmc/articles/PMC4116428/)
 
-gse: # GSE do estudo que queremos fazer download dos dados
+No nosso estudo teste, o ID que nos leva ao arquivo 'matrix' é GSE51808. 
+Atribuindo ele como uma string a um vetor e usando as seguintes funções, nós
+podemos fazer o download do arquivo e ler os dados em um objeto com o mesmo
+nome do ID do estudo.
 
-vai retornar o link para download e o nome do objeto para ser salvo
-
+Então vamos lá:
+- Criando o vetor:
 ```{r}
 gse <- "GSE51808"
+```
+- Obtendo o link para download:
+```{r}
 link <- getLinkDownloadMatrix(gse)
+```
+- Fazendo o download:
+
+(aqui você deverá obter uma mensagem de sucesso quando o download terminar)
+```{r}
 downloadMatrix(link)
+```
+- Lendo os dados:
+```{r}
 dados <- readMyData(gse)
 ```
 
