@@ -4,12 +4,18 @@ assim como fazer uns negócios da hora com eles...
 
 Use com moderação e divirta-se
 
-Loading requirements:
+Rode os seguintes comandos no seu R favorito. Nós estamos usando oficialmente 
+a versão 3.0.2 na plataforma i686-pc-linux-gnu (32-bit) para rodar nossos 
+testes.
 
+Carregando as bibliotecas necessárias e as funções descritas nesse projeto.
 ```{r}
 source("Requirements.R")
 source("funcoes/Functions.R")
 ```
+
+Para continuar listaremos em um vetor todos os estudos que queremos segue um
+exemplo com um estudo sobre Degue que pode ser encontrado [nesse link](http://www.ncbi.nlm.nih.gov/pmc/articles/PMC4116428/)
 
 gse: # GSE do estudo que queremos fazer download dos dados
 

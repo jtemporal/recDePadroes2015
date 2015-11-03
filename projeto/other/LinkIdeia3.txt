@@ -5,9 +5,9 @@ link paper: http://www.ncbi.nlm.nih.gov/pmc/articles/PMC4116428/
 automatizar o download dos dados baseado no estudo atraves do ID (GSEXXXXX)
 (Series Matrix)
 
-ver se eh possivel automatizar o skip lines
+DONE ver se eh possivel automatizar o skip lines
 
-ler dados
+DONE ler dados
 
 fazer PCA 2D
 
