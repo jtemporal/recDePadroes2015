@@ -43,5 +43,21 @@ downloadMatrix(link)
 ```{r}
 dados <- readMyData(gse)
 ```
+O objeto dados é um tipo lista e cada nível corresponderá à um estudo (caso
+você tenha mais de um estudo). Cada nível ao inves de seguir o padrão 1, 2..
+é nomeado seguindo o nome do estudo que corresponde.
+Então para checar o comecinho da matriz podemos fazer
+```{r}
+dados$GSE51808[1:6,1:3]
+```
+Cada coluna em dados$GES51808 corresponde a uma das XX amostras que foram 
+utilizadas no artigo.
+
+Vamos agora categorizar-las.
+
+```{r}
+rownames(dados$GSE51808) <- dados$GSE51808$ID_REF
+dados$GSE51808 <- dados$GSE51808[,-1]
 
 
+```
