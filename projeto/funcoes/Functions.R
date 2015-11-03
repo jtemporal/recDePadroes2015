@@ -29,8 +29,8 @@ downloadMatrix <- function(gseList){
 
 # Função findMatrixBegin
 findMatrixBegin <- function(mat){
-    x = readLines(con = mat)
-    lineNum = grep("series_matrix_table_begin",x)
+    x <- readLines(con = mat)
+    lineNum <- grep("series_matrix_table_begin",x)
     return(lineNum)
 }
 

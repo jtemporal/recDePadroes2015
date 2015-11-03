@@ -1,9 +1,11 @@
-# funcao readMyData()
+# Função readMyData()
+# esta função irá ler os dados disponibilizado pelos estudos de interesse
+# criando objetos com o nome de cada estudo ambiente de trabalho
 # recebe gse como parametro
 # gse eh vetor de caracteres com o(s) ID(s) do(s) estudo(s)
 # retorna tally, uma lista em que cada nivel possui os dados de um estudo
 readMyData <- function(gse){
-    # tally eh inicializado como uma lista vazia
+    # tally eh inicializado como uma lista com uma string que será substituida
     tally <- list("null")
     # criado um laço for onde i vai ate a quantidade de posicoes do vetor gse
     for (i in seq_along(gse)){

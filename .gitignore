@@ -2,3 +2,4 @@
 *.Rhistory
 *.swp
 *.txt.gz
+*matrix.txt

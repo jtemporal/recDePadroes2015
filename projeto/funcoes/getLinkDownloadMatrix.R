@@ -1,4 +1,5 @@
 # funcao getLinkDownloadMatrix()
+# essa funcao irá listar o link para download dos arquivos matrizes
 # recebe gse como parametro
 # gse eh vetor de caracteres com o(s) ID(s) do(s) estudo(s)
 # retorna l, uma lista com nome(s) do(s) estudo(s) e o(s) link(s) do(s) estudo(s)
