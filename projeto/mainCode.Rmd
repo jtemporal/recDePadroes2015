@@ -66,15 +66,12 @@ categoria <- c("Convalescent", "Healthy control", "Dengue Fever", "Dengue Hemorr
 Agora vamos criar um data.frame com as informações sobre as amostras por exemplo:
 - o ID GSM
 - o paciente que a amostra foi recolhida
+- uma cor para cada tipo de paciente
 ```{r}
 metadados <- doMeta(gse)
 dfMeta <- as.data.frame(metadados$GSE51808)
-coloring <- sample(colours(),5)
-# "grey37"     "lightcyan4" "sienna2"    "green2"     "lightblue"
-
-
-rownames(dados$GSE51808) <- dados$GSE51808$ID_REF
-dados$GSE51808 <- dados$GSE51808[,-1]
+coloring <- sample(colours(),4)
+# "lightcyan4" "sienna2"    "green2"     "lightblue"
 
 
 ```
