@@ -54,11 +54,24 @@ dados$GSE51808[1:6,1:3]
 Cada coluna em dados$GES51808 corresponde a uma das 56 amostras que foram 
 utilizadas no artigo.
 
-Vamos agora categorizar-las.
+Vamos agora categorizar-las. Primeiro vamos fazer um vetor com as categorias de
+pacientes, no nosso estudo os pacientes podem ser um dos quatro tipos:
+- Convalescent (paciente em recuperação)
+- Dengue Fever (com febre)
+- Dengue Hemorrhagic Fever (com febre hemorragica)
+- Healthy Control (controles saudaveis)
+```{r}
+categoria <- c("Convalescent", "Healthy control", "Dengue Fever", "Dengue Hemorrhagic Fever")
+```
+Agora vamos criar um data.frame com as informações sobre as amostras por exemplo:
+- o ID GSM
+- o paciente que a amostra foi recolhida
 ```{r}
 metadados <- doMeta(gse)
 dfMeta <- as.data.frame(metadados$GSE51808)
-sample(colours(),5)
+coloring <- sample(colours(),5)
+# "grey37"     "lightcyan4" "sienna2"    "green2"     "lightblue"
+
 
 rownames(dados$GSE51808) <- dados$GSE51808$ID_REF
 dados$GSE51808 <- dados$GSE51808[,-1]
