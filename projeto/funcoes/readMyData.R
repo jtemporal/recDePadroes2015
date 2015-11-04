@@ -8,18 +8,21 @@ readMyData <- function(gse){
     # tally eh inicializado como uma lista com uma string que será substituida
     tally <- list("null")
     # criado um laço for onde i vai ate a quantidade de posicoes do vetor gse
-    for (i in seq_along(gse)){
-        # consultar findMatrixBegin.R para maiores detalhes
-	x <- findMatrixBegin(gse[i])
-	# files recebe o nome dos arquivos matrix dos estudos 
+    for (i in seq_along(gse)){ 
 	files <- list.files(pattern = gse[i])
 	# descomprime o arquivo de matrix(.gz)
 	system(paste0("gunzip ",files)) # esse comando só funciona no linux muahahaha
 	files <- list.files(pattern = gse[i])
-	# le a matrix de estudo do arquivo
+	# consultar findMatrixBegin.R para maiores detalhes
+        x <- findMatrixBegin(files[i])
+        # le a matrix de estudo do arquivo
         data <- read.table(file = files, header = T, skip = x, fill = T, blank.lines.skip = T)
 	# removendo porssiveis linhas que possuam "NA"
         data <- na.omit(data)
+        # renomeando as linhas de data
+        rownames(data) <- data$ID_REF
+        # removendo a coluna de ID
+        data <- data[,-1]
         # cria um novo objeto com o nome do estudo com os dados da matrix
 	assign(gse[i], data)
 	# tally recebe, na posicao i, os dados do estudo lido
