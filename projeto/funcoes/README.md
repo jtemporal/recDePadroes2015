@@ -21,3 +21,4 @@ devem seguir o modelo abaixo:
 - [findMatrixBegin()](https://github.com/jtemporal/recDePadroes2015/blob/master/projeto/funcoes/findMatrixBegin.R)
 - [getLinkDownloadMatrix()](https://github.com/jtemporal/recDePadroes2015/blob/master/projeto/funcoes/getLinkDownloadMatrix.R)
 - [readMyData()](https://github.com/jtemporal/recDePadroes2015/blob/master/projeto/funcoes/readMyData.R)
+- [doColourPalette()](https://github.com/jtemporal/recDePadroes2015/blob/master/projeto/funcoes/doColourPalette.R)
