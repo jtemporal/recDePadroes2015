@@ -38,16 +38,17 @@ findMatrixBegin <- function(mat){
 readMyData <- function(gse){
     tally <- list("null")
     for (i in seq_along(gse)){
-	x <- 69 
 	files <- list.files(pattern = gse[i])
-	system(paste0("gunzip ",files)) # esse comando só funciona no linux 
+	system(paste0("gunzip ",files)) # esse comando só funciona no linux
 	files <- list.files(pattern = gse[i])
+	x <- findMatrixBegin(files[i])
         data <- read.table(file = files, header = T, skip = x, fill = T, blank.lines.skip = T)
         data <- na.omit(data)
+        rownames(data) <- data$ID_REF
+        data <- data[,-1]
         assign(gse[i], data)
 	tally[[i]] <- data
-    }	
-    name <- ls(pattern = "GSE")
+    }
     names(tally) <- name 
     return(tally)
 }
