@@ -20,9 +20,11 @@ doColourPalette <- function(df, type = "none", col = "black", num = 0){
             return(df)
         }
         else {
-            
-            
-            
+            df$col = col 
+            col = sample(colours(),length(type))
+            for (i in 1:length(type)) {
+                df$col[grep(type[i], df$patient)] = col[i]
+            }
         }
         return(df)
     }
