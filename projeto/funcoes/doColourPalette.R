@@ -1,5 +1,5 @@
-# Função doColourPallete
-doColourPallete <- function(df, type = "none", col = "black", num = 0){
+# Função doColourPalette
+doColourPalette <- function(df, type = "none", col = "black", num = 0){
     if (type == "none"){
         return("Você esqueceu de informar a categoria, corrija o codigo e rode novamente :)")
     }
