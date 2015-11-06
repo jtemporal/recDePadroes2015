@@ -66,13 +66,20 @@ categoria <- c("Convalescent", "Healthy control", "Dengue Fever", "Dengue Hemorr
 Agora vamos criar um data.frame com as informações sobre as amostras por exemplo:
 - o ID GSM
 - o paciente que a amostra foi recolhida
-- uma cor para cada tipo de paciente
 ```{r}
 metadados <- doMeta(gse)
 dfMeta <- as.data.frame(metadados$GSE51808)
+```
+Aqui você pode definir manualmente as cores para os tipos de paciente ou
+deixar que a função doColourPalette faça isso para você automaticamente
+(olhe a documentação dessa função para mariores detalhes).
+```{r}
+# Manualmente:
 coloring <- sample(colours(),4)
+dfMeta <- doColourPalette(dfMeta, categoria, coloring)
 # "lightcyan4" "sienna2"    "green2"     "lightblue"
-
+# Automaticamente:
+dfMeta <- doColourPalette(dfMeta,categoria)
 
 ```
 Por questões que vamos explicar mais tarde, vamos separar uma amostra de cada
