@@ -49,7 +49,7 @@ readMyData <- function(gse){
         assign(gse[i], data)
 	tally[[i]] <- data
     }
-    names(tally) <- name 
+    names(tally) <- gse
     return(tally)
 }
 
@@ -89,7 +89,7 @@ doColourPalette <- function(df, type = "none", col = "black", num = 0){
         if (col != "black" && num == 0){
             df$col = "black"
             for (i in 1:length(type)) {
-                df$col[grep(type[i], df$patient)] = col[i]
+                df$col[grep(type[i], df[,2])] = col[i]
             }
             return(df)
         }
@@ -97,7 +97,7 @@ doColourPalette <- function(df, type = "none", col = "black", num = 0){
             df$col = col
             col = sample(colours(),num)
             for (i in 1:length(type)) {
-                df$col[grep(type[i], df$patient)] = col[i]
+                df$col[grep(type[i], df[,2])] = col[i]
             }
             return(df)
         }
@@ -105,7 +105,7 @@ doColourPalette <- function(df, type = "none", col = "black", num = 0){
             df$col = col
             col = sample(colours(),length(type))
             for (i in 1:length(type)) {
-                df$col[grep(type[i], df$patient)] = col[i]
+                df$col[grep(type[i], df[,2])] = col[i]
             }
         }
         return(df)
