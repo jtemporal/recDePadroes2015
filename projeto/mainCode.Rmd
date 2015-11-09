@@ -83,6 +83,7 @@ dfMeta <- doColourPalette(dfMeta, categoria, coloring)
 dfMeta <- doColourPalette(dfMeta,categoria)
 ```
 
+PCA: Falta terminar (automatizar)
 ```{r}
 pca <- prcomp(as.matrix(t(dados$GSE51808)), cor=T, scale=F)
 pairs(pca$x[,1:3], col=dfMeta$col, pch=19)
