@@ -25,7 +25,7 @@ doColourPalette <- function(df, type = "none", col = "black"){
             return("A quantidade de cores não condiz com a quantidade de categorias\nCorrija um dos vetores e rode novamente! :)")
         }
         # se col for igual a black, significa que não foram passado cores pelo usuário
-        else (col == "black"){
+        else {#col == "black"
                 # cria uma nova coluna col em df e preenche com  a cor "black"
                 df$col = col
                 # col recebe cores aleatorias

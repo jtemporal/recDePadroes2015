@@ -96,7 +96,7 @@ doColourPalette <- function(df, type = "none", col = "black"){
         else if (col != "black" && length(col) != length(type)){
             return("A quantidade de cores não condiz com a quantidade de categorias\nCorrija um dos vetores e rode novamente! :)")
         }
-        else (col == "black"){
+        else {
                 df$col = col
                 col = sample(colours(),length(type))
                 for (i in 1:length(type)) {
