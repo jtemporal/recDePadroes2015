@@ -1,6 +1,12 @@
-# recDePadroes2015
-Códigos para as aulas da disciplina: IBM1090 - Reconhecimento de Padrões
+# Projeto para disciplina de Reconhecimento de Padroes 2015
 
-Os arquivos sao nomeados seguindo o modelo: aaaammddaula.R
+TODO
+- [ ] adicionar descricao do projeto
+- [ ] terminar o projeto
 
-Os arquivos .pdf sao os graficos gerados nas aulas e seguem o modelo: aaaammddNomeDoGrafico.pdf
+Contribuidores:
+-------------------
+
+* [Jessica Temporal](https://github.com/jtemporal)
+* [Raissa de F. Poch](https://github.com/raissapoch)
+* [Wilbert Dener](https://github.com/wilbertdener)
