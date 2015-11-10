@@ -81,33 +81,28 @@ doMeta <- function(gse){
 }
 
 # Função doColourPalette
-doColourPalette <- function(df, type = "none", col = "black", num = 0){
+doColourPalette <- function(df, type = "none", col = "black"){
     if (type == "none"){
         return("Você esqueceu de informar a categoria, corrija o codigo e rode novamente :)")
     }
     else {
-        if (col != "black"){
+        if (col != "black" && length(col) == length(type)){
             df$col = "black"
             for (i in 1:length(type)) {
                 df$col[grep(type[i], df[,2])] = col[i]
             }
             return(df)
         }
-        else if (col == "black"){
-            df$col = col
-            col = sample(colours(),length(type))
-            for (i in 1:length(type)) {
-                df$col[grep(type[i], df[,2])] = col[i]
-            }
-            return(df)
+        else if (col != "black" && length(col) != length(type)){
+            return("A quantidade de cores não condiz com a quantidade de categorias\nCorrija um dos vetores e rode novamente! :)")
         }
-        else {
-            df$col = col
-            col = sample(colours(),length(type))
-            for (i in 1:length(type)) {
-                df$col[grep(type[i], df[,2])] = col[i]
-            }
+        else (col == "black"){
+                df$col = col
+                col = sample(colours(),length(type))
+                for (i in 1:length(type)) {
+                    df$col[grep(type[i], df[,2])] = col[i]
+                }
+                return(df)
+            } 
         }
-        return(df)
     }
-}
