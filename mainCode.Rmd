@@ -85,6 +85,89 @@ dfMeta <- doColourPalette(dfMeta,categoria)
 
 PCA: Falta terminar (automatizar)
 ```{r}
+km <- kmeans(t(dados$GSE51808), centers=2)
+plot(t(dados$GSE51808),col=km$cluster)
+
+transDi <- cluster::diana(t(dados$GSE51808))
+hc <- as.dendrogram(transDi)
+
+labelColors <- dfMeta$col
+
+colLab <- function(n) {
+    if (is.leaf(n)) {
+        a <- attributes(n)
+        labCol <- labelColors[clusMember[which(names(clusMember) == a$label)]]
+        attr(n, "nodePar") <- c(a$nodePar, lab.col = labCol)
+    }
+    n
+}
+
+clusMember <- colnames(dados$GSE51808)
+clusMember[grep("II",rownames(abundance.x))]<-2
+names(clusMember)<-rownames(abundance.x)
+
+library(ggdendro)
+ggdendrogram()
+
+1  GSM1253028              Dengue Fever Patient 3   blue 2
+2  GSM1253029              Dengue Fever Patient 4   blue 2
+3  GSM1253030              Dengue Fever Patient 6   blue 2
+4  GSM1253031              Dengue Fever Patient 7   blue 2
+5  GSM1253032 Dengue Hemorrhagic Fever Patient 32 purple 1
+6  GSM1253033             Dengue Fever Patient 33   blue 
+7  GSM1253034 Dengue Hemorrhagic Fever Patient 34 purple
+8  GSM1253035             Dengue Fever Patient 35   blue
+9  GSM1253036             Dengue Fever Patient 36   blue
+10 GSM1253037 Dengue Hemorrhagic Fever Patient 81 purple
+11 GSM1253038             Dengue Fever Patient 37   blue
+12 GSM1253039 Dengue Hemorrhagic Fever Patient 38 purple
+13 GSM1253040 Dengue Hemorrhagic Fever Patient 39 purple
+14 GSM1253041 Dengue Hemorrhagic Fever Patient 40 purple
+15 GSM1253042             Dengue Fever Patient 41   blue
+16 GSM1253043             Dengue Fever Patient 42   blue
+17 GSM1253044             Dengue Fever Patient 43   blue
+18 GSM1253045             Dengue Fever Patient 44   blue
+19 GSM1253046 Dengue Hemorrhagic Fever Patient 45 purple
+20 GSM1253047             Dengue Fever Patient 47   blue
+21 GSM1253048 Dengue Hemorrhagic Fever Patient 48 purple
+22 GSM1253049 Dengue Hemorrhagic Fever Patient 49 purple
+23 GSM1253050             Dengue Fever Patient 54   blue
+24 GSM1253051             Dengue Fever Patient 55   blue
+25 GSM1253052 Dengue Hemorrhagic Fever Patient 60 purple
+26 GSM1253053             Dengue Fever Patient 66   blue
+27 GSM1253054             Dengue Fever Patient 68   blue
+28 GSM1253055             Dengue Fever Patient 80   blue
+29 GSM1253056              Convalescent Patient 3  green
+30 GSM1253057              Convalescent Patient 4  green
+31 GSM1253058              Convalescent Patient 6  green
+32 GSM1253059             Convalescent Patient 33  green
+33 GSM1253060             Convalescent Patient 34  green
+34 GSM1253061             Convalescent Patient 35  green
+35 GSM1253062             Convalescent Patient 36  green
+36 GSM1253063             Convalescent Patient 37  green
+37 GSM1253064             Convalescent Patient 38  green
+38 GSM1253065             Convalescent Patient 39  green
+39 GSM1253066             Convalescent Patient 41  green
+40 GSM1253067             Convalescent Patient 44  green
+41 GSM1253068             Convalescent Patient 45  green
+42 GSM1253069             Convalescent Patient 47  green
+43 GSM1253070             Convalescent Patient 48  green
+44 GSM1253071             Convalescent Patient 49  green
+45 GSM1253072             Convalescent Patient 54  green
+46 GSM1253073             Convalescent Patient 55  green
+47 GSM1253074             Convalescent Patient 80  green
+48 GSM1253075                  Healthy control c3 yellow
+49 GSM1253076                  Healthy control c5 yellow
+50 GSM1253077                  Healthy control c4 yellow
+51 GSM1253078                  Healthy control c6 yellow
+52 GSM1253079                  Healthy control c1 yellow
+53 GSM1253080                  Healthy control c8 yellow
+54 GSM1253081                  Healthy control c7 yellow
+55 GSM1253082                  Healthy control c9 yellow
+56 GSM1253083                  Healthy control c2 yellow
+
+
+
 pca <- prcomp(as.matrix(t(dados$GSE51808)), cor=T, scale=F)
 pairs(pca$x[,1:3], col=dfMeta$col, pch=19)
 plot(
