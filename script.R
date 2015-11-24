@@ -1,7 +1,6 @@
 # script of main code
 # note that the study not specified to facilitate change in the code
 
-
 source("Requirements.R")
 source("funcoes/Functions.R")
 
@@ -14,8 +13,8 @@ dados[[1]][1:6,1:3]
 categoria <- c("Convalescent", "Healthy control", "Dengue Fever", "Dengue Hemorrhagic Fever")
 
 metadados <- doMeta(gse)
+coloring <- c("lightcyan4", "sienna2", "green2", "lightblue")
 dfMeta <- as.data.frame(metadados[[1]])
-coloring <- c("cyan", "purple")
 dfMeta <- doColourPalette(dfMeta, categoria, coloring)
 
 #pca
@@ -25,7 +24,7 @@ plot(
     pca$x,
     col=dfMeta$col,
     pch=19,
-    main = "PCA hipotetico2",
+    main = "PCA",
     xlab=paste0("PC1: ", summary(pca)$importance[2,1]*100, "%"),
     ylab=paste0("PC2: ", summary(pca)$importance[2,2]*100, "%")
 )
@@ -48,8 +47,21 @@ mean(pc2)
 
 #cluster analysis
 
-km <- kmeans(t(dados[[1]]), centers=2)
+km2 <- kmeans(t(dados[[1]]), centers=2)
 plot(t(dados[[1]]),col=km$cluster, pch=19)
+clu2 <- t(t(km2$cluster))
+dfMeta2 <- cbind(dfMeta,clu2)
+
+plot(
+    pca$x,
+    col=dfMeta2$clu2,
+    pch=19,
+    main = "PCA",
+    xlab=paste0("PC1: ", summary(pca)$importance[2,1]*100, "%"),
+    ylab=paste0("PC2: ", summary(pca)$importance[2,2]*100, "%")
+)
+
+
 
 transDi <- cluster::diana(t(dados[[1]]))
 hc <- as.dendrogram(transDi)

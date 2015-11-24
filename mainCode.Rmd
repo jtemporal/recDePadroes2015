@@ -72,13 +72,15 @@ dfMeta <- as.data.frame(metadados$GSE51808)
 ```
 Aqui você pode definir manualmente as cores para os tipos de paciente ou
 deixar que a função doColourPalette faça isso para você automaticamente
-(olhe a documentação dessa função para maiores detalhes).
+(olhe a documentação dessa função para maiores detalhes como a quais colunas df
+deve conter).
+
 ```{r}
 # Manualmente:
 coloring <- sample(colours(),4)
 # lembre-se: você pode também definir as cores para o plot escolhendo-as
 # coloring <- c("lightcyan4", "sienna2", "green2", "lightblue")
-dfMeta <- doColourPalette(dfMeta, categoria, coloring)
+dfMeta <- doColourPalette(dfMeta, categoria, coloring) # warnings são esperados
 # Automaticamente:
 dfMeta <- doColourPalette(dfMeta,categoria)
 ```
