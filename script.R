@@ -13,43 +13,25 @@ dados[[1]][1:6,1:3]
 categoria <- c("Convalescent", "Healthy control", "Dengue Fever", "Dengue Hemorrhagic Fever")
 
 metadados <- doMeta(gse)
-dfMeta <- as.data.frame(metadados$GSE51808)
+dfMeta <- as.data.frame(metadados[[1]])
 coloring <- sample(colours(),4)
 dfMeta <- doColourPalette(dfMeta, categoria, coloring)
 dfMeta <- doColourPalette(dfMeta, categoria)
-km <- kmeans(t(dados$GSE51808), centers=2)
-plot(t(dados$GSE51808),col=km$cluster)
 
-transDi <- cluster::diana(t(dados$GSE51808))
+km <- kmeans(t(dados[[1]]), centers=2)
+plot(t(dados[[1]]),col=km$cluster)
+
+transDi <- cluster::diana(t(dados[[1]]))
 hc <- as.dendrogram(transDi)
 
-labelColors <- dfMeta$col
-
-colLab <- function(n) {
-    if (is.leaf(n)) {
-        a <- attributes(n)
-        labCol <- labelColors[clusMember[which(names(clusMember) == a$label)]]
-        attr(n, "nodePar") <- c(a$nodePar, lab.col = labCol)
-    }
-    n
-}
-
-clusMember <- colnames(dados$GSE51808)
-clusMember[grep("II",rownames(abundance.x))]<-2
-names(clusMember)<-rownames(abundance.x)
-
-library(ggdendro)
-ggdendrogram()
-
-
 #pca
-pca <- prcomp(as.matrix(t(dados$GSE51808)), cor=T, scale=F)
+pca <- prcomp(as.matrix(t(dados[[1]])), cor=T, scale=F)
 pairs(pca$x[,1:3], col=dfMeta$col, pch=19)
 plot(
     pca$x,
     col=dfMeta$col,
     pch=19,
-    main = "PCA hipotetico2",
+    main = "PCA",
     xlab=paste0("PC1: ", summary(pca)$importance[2,1]*100, "%"),
     ylab=paste0("PC2: ", summary(pca)$importance[2,2]*100, "%")
 )
@@ -91,6 +73,27 @@ plot(
 transDi <- cluster::diana(t(dados[[1]]))
 hc <- as.dendrogram(transDi)
 plot(cutree(hc,3))
+
+
+labelColors <- dfMeta$col
+
+colLab <- function(n) {
+    if (is.leaf(n)) {
+        a <- attributes(n)
+        labCol <- labelColors[clusMember[which(names(clusMember) == a$label)]]
+        attr(n, "nodePar") <- c(a$nodePar, lab.col = labCol)
+    }
+    n
+}
+
+clusMember <- colnames(dados[[1]])
+clusMember[grep("II",rownames(abundance.x))]<-2
+names(clusMember)<-rownames(abundance.x)
+
+library(ggdendro)
+ggdendrogram()
+
+
 
 
 

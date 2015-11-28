@@ -3,6 +3,8 @@
 # passados pelo usuário
 # recebe df, type e col como parametro
 # df eh um data.frame, type e col sao vetores de string 
+# df deve ter duas colunas inicialmente, a segunda deve obrigatoriamente conter
+# a categoria de cada amostra
 # retorna df com uma nova coluna (col) que contem as cores
 doColourPalette <- function(df, type = "none", col = "black"){
     # se type não possuir tipos de enfermidades 
