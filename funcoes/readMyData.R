@@ -11,10 +11,11 @@ readMyData <- function(gse){
     for (i in seq_along(gse)){ 
 	files <- list.files(pattern = gse[i])
 	# descomprime o arquivo de matrix(.gz)
-	system(paste0("gunzip ",files)) # esse comando só funciona no linux muahahaha
-	files <- list.files(pattern = gse[i])
+	R.utils::gunzip(files, ext="gz")
 	# consultar findMatrixBegin.R para maiores detalhes
-        x <- findMatrixBegin(files[i])
+	files <- list.files(pattern=gse[i])
+	print(files)
+        x <- findMatrixBegin(files)
         # le a matrix de estudo do arquivo
         data <- read.table(file = files, header = T, skip = x, fill = T, blank.lines.skip = T)
 	# removendo porssiveis linhas que possuam "NA"
