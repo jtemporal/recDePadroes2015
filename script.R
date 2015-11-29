@@ -14,12 +14,13 @@ categoria <- c("Convalescent", "Healthy control", "Dengue Fever", "Dengue Hemorr
 
 metadados <- doMeta(gse)
 dfMeta <- as.data.frame(metadados[[1]])
-coloring <- sample(colours(),4)
+#coloring <- sample(colours(),4)
+coloring <- c("blue", "green", "pink", "red")
 dfMeta <- doColourPalette(dfMeta, categoria, coloring)
-dfMeta <- doColourPalette(dfMeta, categoria)
+#dfMeta <- doColourPalette(dfMeta, categoria)
 
 km <- kmeans(t(dados[[1]]), centers=2)
-plot(t(dados[[1]]),col=km$cluster)
+plot(t(dados[[1]]),col=km$cluster, pch=19)
 
 transDi <- cluster::diana(t(dados[[1]]))
 hc <- as.dendrogram(transDi)
