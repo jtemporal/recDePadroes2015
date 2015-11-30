@@ -17,7 +17,8 @@ Contribuidores:
  
 
 -------------------
-
+IMPORTANTE
+-------------------
 Se estiver rodando o script no linux você precisa ter as seguintes bibliotecas instaladas:
 - XML
 - Curl
