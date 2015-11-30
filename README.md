@@ -22,8 +22,7 @@ Se estiver rodando o script no linux você precisa ter as seguintes bibliotecas 
 - XML
 - Curl
 
-
-para tanto você pode fazer os seguintes comandos:
+para tanto, você pode fazer os seguintes comandos no seu terminal:
 
 ```
 sudo apt-get install libcurl4-openssl-dev
