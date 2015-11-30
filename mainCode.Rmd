@@ -1,16 +1,20 @@
-# Bem vindo ao Código Principal do nosso projeto
-Neste aquivo você encontra um guideline para fazer o download de seus dados de interesse
-assim como fazer uns negócios da hora com eles...
+# Bem vindo ao Codigo Principal do nosso projeto
+Neste aquivo vocÃª encontra um guideline para fazer o download de seus dados de interesse
+assim como fazer uns negÃ³cios da hora com eles...
 
-Use com moderação e divirta-se
+Use com moderacao e divirta-se
 
-Mãos à obra!
+Maos a obra!
 -------------------------------
-Rode os seguintes comandos no seu R favorito. Nós estamos usando oficialmente 
-a versão 3.0.2 na plataforma i686-pc-linux-gnu (32-bit) para rodar nossos 
-testes.
+Rode os seguintes comandos no seu R favorito. Nos estamos usando oficialmente 
+a versao 3.0.2 na plataforma i686-pc-linux-gnu (32-bit) para rodar nossos 
+testes. Tambem testamos na plataforma x86_64-pc-linux-gnu (64-bit) pelo site
+do [Koding] (https://koding.com)
 
-Para carregar as bibliotecas necessárias e as funções descritas nesse projeto use:
+Para carregar as bibliotecas necessarias no R e as funcoes descritas nesse projeto use:
+(lembre-se que se tiver usando o linux eh preciso instalar as bibliotecas Curl e XML
+na sua maquina, voce pode ver na sessao [IMPORTANTE] (https://github.com/jtemporal/recDePadroes2015/blob/master/README.md)
+os comandos para fazer isso)
 ```{r}
 source("Requirements.R")
 source("funcoes/Functions.R")
@@ -20,12 +24,12 @@ Para continuar listaremos em um vetor todos os estudos que queremos. Como
 exemplo usaremos um artigo sobre Degue que pode ser encontrado [nesse link](http://www.ncbi.nlm.nih.gov/pmc/articles/PMC4116428/)
 e os dados podem ser obtidos [nesse link aqui](http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE51808).
 
-No nosso estudo teste, o ID que nos leva ao arquivo 'matrix' é GSE51808. 
+No nosso estudo teste, o ID que nos leva ao arquivo 'matrix' eh GSE51808. 
 Atribuindo ele como uma string a um vetor (que vamos carinhosamente chamar de gse)
-e usando as seguintes funções, nós podemos fazer o download do arquivo
+e usando as seguintes funcoes, nao podemos fazer o download do arquivo
 e ler os dados em um objeto com o mesmo nome do ID do estudo.
 
-Então vamos lá!
+Entao vamos la!
 - Criando o vetor:
 ```{r}
 gse <- "GSE51808"
@@ -36,9 +40,9 @@ link <- getLinkDownloadMatrix(gse)
 ```
 - Fazendo o download:
 
-(aqui você deverá obter uma mensagem de sucesso quando o download termina
-(Se você estiver usando o GUI do R no windows pode ser que ele mostre um aviso
-pedindo permiss�o para fazer o download, ésóaceitar)
+(aqui voce devera obter uma mensagem de sucesso quando o download termina
+(Se voce estiver usando o GUI do R no windows pode ser que ele mostre um aviso
+pedindo permissÃo para fazer o download, eh soh aceitar)
 ```{r}
 downloadMatrix(link)
 ```
@@ -46,43 +50,47 @@ downloadMatrix(link)
 ```{r}
 dados <- readMyData(gse)
 ```
-O objeto dados é um tipo lista e cada nível corresponderá à um estudo (caso
-você tenha mais de um estudo). Cada nível ao invés de seguir o padrão 1, 2..
-é nomeado seguindo o nome do estudo correspondente.
-Então para checar o comecinho da matriz podemos fazer
+O objeto dados eh do tipo lista e cada nivel correspondera a um estudo (caso
+voce tenha mais de um estudo). Cada nevel ao inves de seguir o padrao 1, 2..
+eh nomeado seguindo o nome do estudo correspondente.
+Entao para checar o comecinho da matriz podemos fazer
 ```{r}
 dados$GSE51808[1:6,1:3]
+```
+ou usar o indice do nivel da lista
+```{r}
+dados[[1]][1:6,1:3]
 ```
 Cada coluna em dados$GES51808 corresponde a uma das 56 amostras que foram 
 utilizadas no artigo.
 
 Vamos agora categorizar-las. Primeiro vamos fazer um vetor com as categorias de
 pacientes, no nosso estudo os pacientes podem ser um dos quatro tipos:
-- Convalescent (paciente em recuperação)
+- Convalescent (paciente em recuperacao)
 - Dengue Fever (com febre)
 - Dengue Hemorrhagic Fever (com febre hemorragica)
 - Healthy Control (controles saudaveis)
 ```{r}
 categoria <- c("Convalescent", "Healthy control", "Dengue Fever", "Dengue Hemorrhagic Fever")
 ```
-Agora vamos criar um data.frame com as informações sobre as amostras por exemplo:
+Agora vamos criar um data.frame com as informacoes sobre as amostras por exemplo:
 - o ID GSM
 - o paciente que a amostra foi recolhida
 ```{r}
 metadados <- doMeta(gse)
 dfMeta <- as.data.frame(metadados$GSE51808)
 ```
-Aqui você pode definir manualmente as cores para os tipos de paciente ou
-deixar que a função doColourPalette faça isso para você automaticamente
-(olhe a documentação dessa função para maiores detalhes como a quais colunas df
+Aqui vocÃª pode definir manualmente as cores para os tipos de paciente ou
+deixar que a funÃ§Ã£o doColourPalette faÃ§a isso para vocÃª automaticamente
+(olhe a documentaÃ§Ã£o dessa funÃ§Ã£o para maiores detalhes como a quais colunas df
 deve conter).
 
 ```{r}
 # Manualmente:
 coloring <- sample(colours(),4)
-# lembre-se: você pode também definir as cores para o plot escolhendo-as
+# lembre-se: vocÃª pode tambÃ©m definir as cores para o plot escolhendo-as
 # coloring <- c("lightcyan4", "sienna2", "green2", "lightblue")
-dfMeta <- doColourPalette(dfMeta, categoria, coloring) # warnings são esperados
+dfMeta <- doColourPalette(dfMeta, categoria, coloring) # warnings sÃ£o esperados
 # Automaticamente:
 dfMeta <- doColourPalette(dfMeta,categoria)
 ```
@@ -190,8 +198,8 @@ legend(
 
 
 ```
-Por questões que vamos explicar mais tarde, vamos separar uma amostra de cada
-tipo e "tirar" elas da nossa matriz principal. Num estudo real você não vai
+Por questÃµes que vamos explicar mais tarde, vamos separar uma amostra de cada
+tipo e "tirar" elas da nossa matriz principal. Num estudo real vocÃª nÃ£o vai
 precisar rodar as linhas a seguir.
 ```{r}
 
