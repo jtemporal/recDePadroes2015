@@ -1,6 +1,6 @@
 # Bem vindo ao Codigo Principal do nosso projeto
-Neste aquivo vocÃª encontra um guideline para fazer o download de seus dados de interesse
-assim como fazer uns negÃ³cios da hora com eles...
+Neste aquivo voce encontra um guideline para fazer o download de seus dados de interesse
+assim como fazer uns negocios da hora com eles...
 
 Use com moderacao e divirta-se
 
@@ -80,8 +80,8 @@ Agora vamos criar um data.frame com as informacoes sobre as amostras por exemplo
 metadados <- doMeta(gse)
 dfMeta <- as.data.frame(metadados$GSE51808)
 ```
-Aqui vocÃª pode definir manualmente as cores para os tipos de paciente ou
-deixar que a funÃ§Ã£o doColourPalette faÃ§a isso para vocÃª automaticamente
+Aqui voce pode definir manualmente as cores para os tipos de paciente ou
+deixar que a funcao doColourPalette faca isso para vocÃª automaticamente
 (olhe a documentaÃ§Ã£o dessa funÃ§Ã£o para maiores detalhes como a quais colunas df
 deve conter).
 
