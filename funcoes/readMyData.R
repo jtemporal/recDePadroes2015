@@ -7,7 +7,6 @@
 readMyData <- function(gse){
     # tally eh inicializado como uma lista com uma string que será substituida
     tally <- list("null")
-    # criado um laço for onde i vai ate a quantidade de posicoes do vetor gse
     for (i in seq_along(gse)){ 
 	files <- list.files(pattern = gse[i])
 	# descomprime o arquivo de matrix(.gz)
