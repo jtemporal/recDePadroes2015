@@ -29,7 +29,6 @@ Atribuindo ele como uma string a um vetor (que vamos carinhosamente chamar de gs
 e usando as seguintes funcoes, nao podemos fazer o download do arquivo
 e ler os dados em um objeto com o mesmo nome do ID do estudo.
 
-Entao vamos la!
 - Criando o vetor:
 ```{r}
 gse <- "GSE51808"
@@ -198,8 +197,8 @@ legend(
 
 
 ```
-Por questÃµes que vamos explicar mais tarde, vamos separar uma amostra de cada
-tipo e "tirar" elas da nossa matriz principal. Num estudo real vocÃª nÃ£o vai
+Por questões que vamos explicar mais tarde, vamos separar uma amostra de cada
+tipo e "tirar" elas da nossa matriz principal. Num estudo real você não vai
 precisar rodar as linhas a seguir.
 ```{r}
 
