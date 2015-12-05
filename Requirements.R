@@ -3,7 +3,7 @@
 #Gunzip #Caso não encontre o comando em R
 
 # list of necessary packages
-packagesList <- c("XML", "RCurl", "downloader", "R.utils")
+packagesList <- c("XML", "RCurl", "downloader", "R.utils", "cluster")
 
 # checks if the packages are installed if not put the non-istalled in a vector
 toInstall <- packagesList[!(packagesList %in% installed.packages()[, "Package"])]
