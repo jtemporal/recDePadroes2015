@@ -7,7 +7,7 @@
 # a categoria de cada amostra
 # retorna df com uma nova coluna (col) que contem as cores
 doColourPalette <- function(df, type = "none", col = "black"){
-    # se type não possuir tipos de enfermidades 
+
     if (type == "none"){
         return("Você esqueceu de informar a categoria, corrija o codigo e rode novamente :)")
     }
@@ -27,7 +27,7 @@ doColourPalette <- function(df, type = "none", col = "black"){
             return("A quantidade de cores não condiz com a quantidade de categorias\nCorrija um dos vetores e rode novamente! :)")
         }
         # se col for igual a black, significa que não foram passado cores pelo usuário
-        else {#col == "black"
+        else {
                 # cria uma nova coluna col em df e preenche com  a cor "black"
                 df$col = col
                 # col recebe cores aleatorias
