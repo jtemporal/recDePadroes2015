@@ -38,7 +38,7 @@ link <- getLinkDownloadMatrix(gse)
 
 (aqui voce devera obter uma mensagem de sucesso quando o download termina
 (Se voce estiver usando o GUI do R no windows pode ser que ele mostre um aviso
-pedindo permissÃo para fazer o download, eh soh aceitar)
+pedindo permissao para fazer o download, eh soh aceitar)
 ```{r}
 downloadMatrix(link)
 ```
