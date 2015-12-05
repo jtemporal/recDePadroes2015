@@ -25,24 +25,26 @@ write.table(x=dfMeta,
             row.names=F)
 #dfMeta <- doColourPalette(dfMeta, categoria)
 
-km <- kmeans(t(dados[[1]]), centers=2)
+t.dados <- t(dados[[1]])
+
+km <- kmeans(t.dados, centers=2)
 pdf("kmeans2centers.pdf")
-plot(t(dados[[1]]),col=km$cluster, pch=19)
+plot(t.dados,col=km$cluster, pch=19)
 dev.off()
 
-transDi <- cluster::diana(t(dados[[1]]))
+transDi <- cluster::diana(t.dados)
 pdf("diana.pdf")
 plot(transDi)
 dev.off()
 
-d = dist(t(dados[[1]]))
+d = dist(t.dados)
 hc <- hclust(d)
 pdf("hclust.pdf")
 plot(hc)
 dev.off()
 
 #pca
-pca <- prcomp(as.matrix(t(dados[[1]])), cor=T, scale=F)
+pca <- prcomp(as.matrix(t.dados), cor=T, scale=F)
 
 pdf("pca-pairs-1to3.pdf")
 pairs(pca$x[,1:3], col=dfMeta$col, pch=19)
@@ -64,8 +66,57 @@ legend(
 )
 dev.off()
 
+dfMeta2 <- dfMeta
+dfMeta2$Species <- NA
+
+for (i in 1:length(categoria)) {
+    dfMeta2$Species[grep(categoria[i], dfMeta2[,2])] = categoria[i]
+    }
 
 
 
+dataset = data.frame(species = dfMeta2[,"Species"], pca = pca$x)
+
+prop.pca = pca$sdev^2/sum(pca$sdev^2)
+
+df.t.dados <- data.frame(Species=dfMeta2$Species, t.dados)
+
+lda.dados <- lda(formula = Species ~ ., 
+                 data = df.t.dados, 
+                 prior = c(1,1,1,1)/4)
+
+lda.dados$prior
+#plot bonito
+p2 <- ggplot(dataset) + 
+geom_point(aes(pca.PC1, pca.PC2, colour = species, 
+    shape = species), size = 2.5) +
+  labs(x = paste("PC1 (", scales::percent(prop.pca[1]), ")", sep=""),
+       y = paste("PC2 (", scales::percent(prop.pca[2]), ")", sep=""))
+
+plot(p2)
 
 
+library(gplots)
+heatmap.2(
+    #as.matrix(temps), 
+    as.matrix(t.dados),
+#    dendrogram=TRUE,
+    na.rm=TRUE,
+        scale="none",
+        #RowSideColor=colors.l,
+        #ColSideColors=colors.l.1,
+        #col=jet.colors(75),
+        key=FALSE,
+        symkey=FALSE,
+        density.info="none",
+        trace="none",
+        Rowv=TRUE,
+        Colv=NA,
+        cexRow=1,
+        cexCol=0.6,
+        keysize=1,
+#       dendrogram=TRUE,
+        #main = "nondel vs control"
+        #labCol=NA
+        #labRow=NA
+)
