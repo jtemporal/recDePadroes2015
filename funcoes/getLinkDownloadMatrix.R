@@ -4,9 +4,7 @@
 # gse eh vetor de caracteres com o(s) ID(s) do(s) estudo(s)
 # retorna l, uma lista com nome(s) do(s) estudo(s) e o(s) link(s) do(s) estudo(s)
 getLinkDownloadMatrix <- function(gse){
-	#l eh inicializada como uma lista vazia
-	l <- list("null") 
-    #criado um laço for onde i vai ate a quanidade de posicoes do vetor gse
+	l <- list("null")
     for (i in seq_along(gse)){ 
     	#url recebe uma string do endereco de download, do ID, da posicao i do vetor gse
     	url <- paste0( "http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=", gse[i])
