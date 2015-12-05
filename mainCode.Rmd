@@ -1,10 +1,7 @@
 # Bem vindo ao Codigo Principal do nosso projeto
-Neste aquivo voce encontra um guideline para fazer o download de seus dados de interesse
-assim como fazer uns negocios da hora com eles...
 
-Use com moderacao e divirta-se
+Neste aquivo voce encontra um guideline para fazer o download de seus dados de interesse.
 
-Maos a obra!
 -------------------------------
 Rode os seguintes comandos no seu R favorito. Nos estamos usando oficialmente 
 a versao 3.0.2 na plataforma i686-pc-linux-gnu (32-bit) para rodar nossos 
