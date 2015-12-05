@@ -26,7 +26,6 @@ Atribuindo ele como uma string a um vetor (que vamos carinhosamente chamar de gs
 e usando as seguintes funcoes, nao podemos fazer o download do arquivo
 e ler os dados em um objeto com o mesmo nome do ID do estudo.
 
-Entao vamos la!
 - Criando o vetor:
 ```{r}
 gse <- "GSE51808"
@@ -78,8 +77,8 @@ metadados <- doMeta(gse)
 dfMeta <- as.data.frame(metadados$GSE51808)
 ```
 Aqui voce pode definir manualmente as cores para os tipos de paciente ou
-deixar que a funcao doColourPalette faca isso para vocÃª automaticamente
-(olhe a documentaÃ§Ã£o dessa funÃ§Ã£o para maiores detalhes como a quais colunas df
+deixar que a funcao doColourPalette faca isso para voce automaticamente
+(olhe a documentacao dessa funcao para maiores detalhes como a quais colunas df
 deve conter).
 
 ```{r}
@@ -195,8 +194,8 @@ legend(
 
 
 ```
-Por questÃµes que vamos explicar mais tarde, vamos separar uma amostra de cada
-tipo e "tirar" elas da nossa matriz principal. Num estudo real vocÃª nÃ£o vai
+Por questoes que vamos explicar mais tarde, vamos separar uma amostra de cada
+tipo e "tirar" elas da nossa matriz principal. Num estudo real voce nao vai
 precisar rodar as linhas a seguir.
 ```{r}
 
