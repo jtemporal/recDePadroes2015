@@ -1,6 +1,4 @@
 # Requirements for R
-#Linux
-#Gunzip #Caso não encontre o comando em R
 
 # list of necessary packages
 packagesList <- c("XML", "RCurl", "downloader", "R.utils", "cluster", "ggplot")
