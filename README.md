@@ -7,7 +7,10 @@ TODO
 
 
 -------------------
+Plots
 
+Dendrograma gerado com a funcao hclust
+![hclust](https://github.com/jtemporal/recDePadroes2015/blob/master/plots/hclust-clust.png)
 
 Contribuidores:
 
