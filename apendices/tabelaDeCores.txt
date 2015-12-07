@@ -1,0 +1,57 @@
+gsm	patient	col
+GSM1253028	Dengue Fever Patient 3	pink
+GSM1253029	Dengue Fever Patient 4	pink
+GSM1253030	Dengue Fever Patient 6	pink
+GSM1253031	Dengue Fever Patient 7	pink
+GSM1253032	Dengue Hemorrhagic Fever Patient 32	red
+GSM1253033	Dengue Fever Patient 33	pink
+GSM1253034	Dengue Hemorrhagic Fever Patient 34	red
+GSM1253035	Dengue Fever Patient 35	pink
+GSM1253036	Dengue Fever Patient 36	pink
+GSM1253037	Dengue Hemorrhagic Fever Patient 81	red
+GSM1253038	Dengue Fever Patient 37	pink
+GSM1253039	Dengue Hemorrhagic Fever Patient 38	red
+GSM1253040	Dengue Hemorrhagic Fever Patient 39	red
+GSM1253041	Dengue Hemorrhagic Fever Patient 40	red
+GSM1253042	Dengue Fever Patient 41	pink
+GSM1253043	Dengue Fever Patient 42	pink
+GSM1253044	Dengue Fever Patient 43	pink
+GSM1253045	Dengue Fever Patient 44	pink
+GSM1253046	Dengue Hemorrhagic Fever Patient 45	red
+GSM1253047	Dengue Fever Patient 47	pink
+GSM1253048	Dengue Hemorrhagic Fever Patient 48	red
+GSM1253049	Dengue Hemorrhagic Fever Patient 49	red
+GSM1253050	Dengue Fever Patient 54	pink
+GSM1253051	Dengue Fever Patient 55	pink
+GSM1253052	Dengue Hemorrhagic Fever Patient 60	red
+GSM1253053	Dengue Fever Patient 66	pink
+GSM1253054	Dengue Fever Patient 68	pink
+GSM1253055	Dengue Fever Patient 80	pink
+GSM1253056	Convalescent Patient 3	blue
+GSM1253057	Convalescent Patient 4	blue
+GSM1253058	Convalescent Patient 6	blue
+GSM1253059	Convalescent Patient 33	blue
+GSM1253060	Convalescent Patient 34	blue
+GSM1253061	Convalescent Patient 35	blue
+GSM1253062	Convalescent Patient 36	blue
+GSM1253063	Convalescent Patient 37	blue
+GSM1253064	Convalescent Patient 38	blue
+GSM1253065	Convalescent Patient 39	blue
+GSM1253066	Convalescent Patient 41	blue
+GSM1253067	Convalescent Patient 44	blue
+GSM1253068	Convalescent Patient 45	blue
+GSM1253069	Convalescent Patient 47	blue
+GSM1253070	Convalescent Patient 48	blue
+GSM1253071	Convalescent Patient 49	blue
+GSM1253072	Convalescent Patient 54	blue
+GSM1253073	Convalescent Patient 55	blue
+GSM1253074	Convalescent Patient 80	blue
+GSM1253075	Healthy control c3	green
+GSM1253076	Healthy control c5	green
+GSM1253077	Healthy control c4	green
+GSM1253078	Healthy control c6	green
+GSM1253079	Healthy control c1	green
+GSM1253080	Healthy control c8	green
+GSM1253081	Healthy control c7	green
+GSM1253082	Healthy control c9	green
+GSM1253083	Healthy control c2	green

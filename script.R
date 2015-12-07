@@ -17,34 +17,28 @@ dfMeta <- as.data.frame(metadados[[1]])
 #coloring <- sample(colours(),4)
 coloring <- c("blue", "green", "pink", "red")
 dfMeta <- doColourPalette(dfMeta, categoria, coloring)
-write.table(x=dfMeta, 
-            append=F, 
-            sep="\t",
-            col.names=T,
-            file="tabelaDeCores.txt",
-            row.names=F)
 #dfMeta <- doColourPalette(dfMeta, categoria)
 
 t.dados <- t(dados[[1]])
 
 km <- kmeans(t.dados, centers=2)
 pdf("kmeans2centers.pdf")
-plot(t.dados,col=km$cluster, pch=19)
+plot(t.dados,col=km$cluster, pch=19, xlab=NA, ylab=NA)
 dev.off()
 
 km3 <- kmeans(t.dados, centers=3)
 pdf("kmeans3centers.pdf")
-plot(t.dados,col=km3$cluster, pch=19)
+plot(t.dados,col=km3$cluster, pch=19, xlab=NA, ylab=NA)
 dev.off()
 
 p <- cluster::pam(t.dados, k=2)
 pdf("pam2centers.pdf")
-plot(t.dados,col=p$clustering, pch=19)
+plot(t.dados,col=p$clustering, pch=19, xlab=NA, ylab=NA)
 dev.off()
 
 p3 <- cluster::pam(t.dados, k=3)
 pdf("pam3centers.pdf")
-plot(t.dados,col=p3$cluster, pch=19)
+plot(t.dados,col=p3$cluster, pch=19, xlab=NA, ylab=NA)
 dev.off()
 
 transDi <- cluster::diana(t.dados)
@@ -104,8 +98,30 @@ plot(p2)
 
 
 
+# gerando apendices
+write.table(x=dfMeta, 
+            append=F, 
+            sep="\t",
+            col.names=T,
+            file="tabelaDeCores.txt",
+            row.names=F,
+            quote=F)
 
+write.table(x=km$cluster, 
+            append=F, 
+            sep="\t",
+            col.names=F,
+            file="kmeans_k2_clusters.txt",
+            row.names=T,
+            quote=F)
 
+write.table(x=p$clustering, 
+            append=F, 
+            sep="\t",
+            col.names=F,
+            file="pam_k2_clusters.txt",
+            row.names=T,
+            quote=F)
 
 df.t.dados <- data.frame(Species=dfMeta2$Species, t.dados)
 
