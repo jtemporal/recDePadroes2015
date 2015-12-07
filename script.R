@@ -32,6 +32,21 @@ pdf("kmeans2centers.pdf")
 plot(t.dados,col=km$cluster, pch=19)
 dev.off()
 
+km3 <- kmeans(t.dados, centers=3)
+pdf("kmeans3centers.pdf")
+plot(t.dados,col=km3$cluster, pch=19)
+dev.off()
+
+p <- cluster::pam(t.dados, k=2)
+pdf("pam2centers.pdf")
+plot(t.dados,col=p$clustering, pch=19)
+dev.off()
+
+p3 <- cluster::pam(t.dados, k=3)
+pdf("pam3centers.pdf")
+plot(t.dados,col=p3$cluster, pch=19)
+dev.off()
+
 transDi <- cluster::diana(t.dados)
 pdf("diana.pdf")
 plot(transDi)
