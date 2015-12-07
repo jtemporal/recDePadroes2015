@@ -75,6 +75,17 @@ legend(
 )
 dev.off()
 
+pdf("pca-1e2-cluster-k2.pdf")
+plot(
+    pca$x,
+    col=km$cluster,
+    pch=19,
+    main = "PCA - cores do kmeans (k=2)",
+    xlab=paste0("PC1: ", summary(pca)$importance[2,1]*100, "%"),
+    ylab=paste0("PC2: ", summary(pca)$importance[2,2]*100, "%")
+)
+dev.off()
+
 # plotando pca usando o ggplot
 dfMeta2 <- dfMeta
 dfMeta2$Species <- NA
