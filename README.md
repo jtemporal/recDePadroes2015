@@ -7,17 +7,20 @@ TODO
 
 
 -------------------
-Plots
-
-Dendrograma gerado com a funcao hclust
-![hclust](https://github.com/jtemporal/recDePadroes2015/blob/master/plots/hclust-clust.png)
-
 Contribuidores:
 
 * [Jessica Temporal](https://github.com/jtemporal)
 * [Raissa de F. Poch](https://github.com/raissapoch)
 * [Wilbert Dener](https://github.com/wilbertdener)
  
+
+Plots
+-------------------
+Dendrograma gerado com a funcao hclust
+![dendroHclust](https://github.com/jtemporal/recDePadroes2015/blob/master/plots/hclust-clust.png)
+
+Dendrograma gerado com a funcao diana
+![dendroDiana](https://github.com/jtemporal/recDePadroes2015/blob/master/plots/dendro-Diana.png)
 
 -------------------
 IMPORTANTE
