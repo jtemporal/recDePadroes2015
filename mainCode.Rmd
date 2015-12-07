@@ -96,6 +96,14 @@ PCA: Falta terminar (automatizar)
 km <- kmeans(t(dados$GSE51808), centers=2)
 plot(t(dados$GSE51808),col=km$cluster)
 
+km3 <- kmeans(t(dados$GSE51808), centers=3)
+plot(t(dados$GSE51808),col=km3$cluster)
+
+p <- cluster::pam(t.dados, k=2)
+plot()
+
+p3 <- cluster::pam(t.dados, k=3)
+
 transDi <- cluster::diana(t(dados$GSE51808))
 hc <- as.dendrogram(transDi)
 
