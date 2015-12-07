@@ -8,7 +8,7 @@ TODO
 
 -------------------
 Contribuidores:
-
+-------------------
 * [Jessica Temporal](https://github.com/jtemporal)
 * [Raissa de F. Poch](https://github.com/raissapoch)
 * [Wilbert Dener](https://github.com/wilbertdener)
@@ -16,11 +16,19 @@ Contribuidores:
 
 Plots
 -------------------
+PCA calculado pela funcao prcomp, PC1 x PC2
+![pca](https://github.com/jtemporal/recDePadroes2015/blob/master/plots/pca-1com2.png)
+
+PCA calculado pela funcao prcomp: pareado PC1 x PC2, PC1 x PC3, PC2 x PC3
+![pcaPairs](https://github.com/jtemporal/recDePadroes2015/blob/master/plots/pca-pairs.png)
+
 Dendrograma gerado com a funcao hclust
 ![dendroHclust](https://github.com/jtemporal/recDePadroes2015/blob/master/plots/hclust-clust.png)
 
 Dendrograma gerado com a funcao diana
 ![dendroDiana](https://github.com/jtemporal/recDePadroes2015/blob/master/plots/dendro-Diana.png)
+
+
 
 -------------------
 IMPORTANTE
