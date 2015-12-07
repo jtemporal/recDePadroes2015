@@ -66,6 +66,7 @@ legend(
 )
 dev.off()
 
+# plotando pca usando o ggplot
 dfMeta2 <- dfMeta
 dfMeta2$Species <- NA
 
@@ -73,20 +74,10 @@ for (i in 1:length(categoria)) {
     dfMeta2$Species[grep(categoria[i], dfMeta2[,2])] = categoria[i]
     }
 
-
-
 dataset = data.frame(species = dfMeta2[,"Species"], pca = pca$x)
 
 prop.pca = pca$sdev^2/sum(pca$sdev^2)
 
-df.t.dados <- data.frame(Species=dfMeta2$Species, t.dados)
-
-lda.dados <- lda(formula = Species ~ ., 
-                 data = df.t.dados, 
-                 prior = c(1,1,1,1)/4)
-
-lda.dados$prior
-#plot bonito
 p2 <- ggplot(dataset) + 
 geom_point(aes(pca.PC1, pca.PC2, colour = species, 
     shape = species), size = 2.5) +
@@ -94,6 +85,20 @@ geom_point(aes(pca.PC1, pca.PC2, colour = species,
        y = paste("PC2 (", scales::percent(prop.pca[2]), ")", sep=""))
 
 plot(p2)
+
+
+
+
+
+
+
+df.t.dados <- data.frame(Species=dfMeta2$Species, t.dados)
+
+lda.dados <- lda(formula = Species ~ ., 
+                 data = df.t.dados, 
+
+lda.dados$prior
+#plot bonito
 
 
 library(gplots)
