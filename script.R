@@ -111,13 +111,13 @@ plot(p2)
 
 
 # gerando apendices
-write.table(x=dfMeta, 
-            append=F, 
-            sep="\t",
-            col.names=T,
-            file="tabelaDeCores.txt",
-            row.names=F,
-            quote=F)
+write.table(x=dfMeta, # dado a ser escrito
+            append=F, # boleano se o arq ja existe escreve linhas extras (T) ou sobrescreve (F)
+            sep="\t", # o tipo do separador, nesse caso \t indica tab
+            col.names=T, # boleano para os nomes das colunas
+            file="tabelaDeCores.txt", # nome do arquivo
+            row.names=F, # boleano para os nomes das linhas
+            quote=F) # boleano para presenca de aspas
 
 write.table(x=km$cluster, 
             append=F, 

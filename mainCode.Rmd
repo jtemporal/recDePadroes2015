@@ -129,7 +129,10 @@ legend(
     col=coloring,
     legend=categoria
 )
+```
+
 Tambem podemos plotar o PCA usando o pacote ggplot com o código abaixo
+```{r}
 dfMeta2 <- dfMeta
 dfMeta2$Species <- NA
 
@@ -148,9 +151,9 @@ geom_point(aes(pca.PC1, pca.PC2, colour = species,
        y = paste("PC2 (", scales::percent(prop.pca[2]), ")", sep=""))
 
 plot(p2)
+```
 
-
-Apêndices
+Apendices
 ```{r}
 write.table(x=dfMeta, # dado a ser escrito
             append=F, # boleano se o arq ja existe escreve linhas extras (T) ou sobrescreve (F)
