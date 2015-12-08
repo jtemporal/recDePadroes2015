@@ -7,51 +7,108 @@ source("Requirements.R")
 source("funcoes/Functions.R")
 Para continuar listaremos em um vetor todos os estudos que queremos. Como exemplo usaremos um artigo sobre Degue que pode ser encontrado nesse link e os dados podem ser obtidos nesse link aqui.
 No nosso estudo teste, o ID que nos leva ao arquivo 'matrix' eh GSE51808. Atribuindo ele como uma string a um vetor (que vamos carinhosamente chamar de gse) e usando as seguintes funcoes, nao podemos fazer o download do arquivo e ler os dados em um objeto com o mesmo nome do ID do estudo.
-•	Criando o vetor:
+- Criando o vetor:
+```{r}
 gse <- "GSE51808"
-•	Obtendo o link para download:
+```
+- Obtendo o link para download:
+```{r}
 link <- getLinkDownloadMatrix(gse)
-•	Fazendo o download:
+```
+- Fazendo o download:
 (aqui voce devera obter uma mensagem de sucesso quando o download termina (Se voce estiver usando o GUI do R no windows pode ser que ele mostre um aviso pedindo permissao para fazer o download, eh soh aceitar)
+```{r}
 downloadMatrix(link)
-•	Lendo os dados:
+```
+- Lendo os dados:
+```{r}
 dados <- readMyData(gse)
-Usar o indice do nivel da lista
+```
+Podemos usar o indice do nivel da lista ou o nome do estudo para acessar os dados:
+```{r}
 dados[[1]][1:6,1:3]
+dados$GSE51808[1:6,1:3]
+```
 Cada coluna em dados$GES51808 corresponde a uma das 56 amostras que foram utilizadas no artigo.
 Vamos agora categorizar-las. Primeiro vamos fazer um vetor com as categorias de pacientes, no nosso estudo os pacientes podem ser um dos quatro tipos:
-•	Convalescent (paciente em recuperacao)
-•	Dengue Fever (com febre)
-•	Dengue Hemorrhagic Fever (com febre hemorragica)
-•	Healthy Control (controles saudaveis)
+- Convalescent (paciente em recuperacao)
+- Dengue Fever (com febre)
+- Dengue Hemorrhagic Fever (com febre hemorragica)
+- Healthy Control (controles saudaveis)
+```{r}
 categoria <- c("Convalescent", "Healthy control", "Dengue Fever", "Dengue Hemorrhagic Fever")
-Agora vamos criar um data.frame com as informacoes sobre as amostras por exemplo:
-•	o ID GSM
-•	o paciente que a amostra foi recolhida
+```
+
+Criando um data.frame com as informacoes sobre as amostras por exemplo:
+- o ID GSM
+- o paciente que a amostra foi recolhida
+```{r}
 metadados <- doMeta(gse)
 dfMeta <- as.data.frame(metadados[[1]])
+```
 Aqui voce pode definir manualmente as cores para os tipos de paciente ou deixar que a funcao doColourPalette faca isso para voce automaticamente (olhe a documentacao dessa funcao para maiores detalhes como a quais colunas df deve conter).
+```{r}
 # Manualmente:
 coloring <- sample(colours(),4)
-# lembre-se: vocÃª pode tambÃ©m definir as cores para o plot escolhendo-as
+# lembre-se: voce pode tambem definir as cores para o plot escolhendo-as
 # coloring <- c("lightcyan4", "sienna2", "green2", "lightblue")
-dfMeta <- doColourPalette(dfMeta, categoria, coloring) # warnings sÃ£o esperados
+dfMeta <- doColourPalette(dfMeta, categoria, coloring) # warnings sao esperados
 # Automaticamente:
 dfMeta <- doColourPalette(dfMeta,categoria)
-PCA: Falta terminar (automatizar)
+```
+Apos executar todos os passoas acima, podemos fazer a analise de clusters
+aqui iremos demonstrar alguns metodos que aprendemos durante a disciplina.
+Mas primeiro vamos criar um objeto com a matriz transposta dos nossos dados.
+Como o R, normalmente, faz os agrupamentos baseado nas linhas as dimensoes
+maiores precisam estar localizadas na coluna:
+```{r}
+dim(dados$GSE51808)
+# [1] 54715    56
+t.dados <- t(dados[[1]])
+dim(t.dados)
+#[1]    56 54715
+```
+
+Kmeans:
+Um metodo nao supervisionado de particionamento onde se define em quantos 
+clusters queremos agrupar nossas amostras. O algoritmo do kmeans divide as 
+amostras baseadas em centros, esses centroides são calculados atraves da media
+(mean) de algumas amostras, o objetivo eh ir separando as medias mais proximas
+formando agrupamentos (clusters) de amostras enquanto dentro de cada grupo
+as medias sao proximas os grupos entre si devem possuir medias mais distantes. 
+Sendo assim, o kmeans mede as distancias entre os centros usando o quadrado 
+das distancias euclidianas o que o torna um algoritmo custoso.
+```{r}
 km <- kmeans(t(dados$GSE51808), centers=2)
 plot(t(dados$GSE51808),col=km$cluster)
 
 km3 <- kmeans(t(dados$GSE51808), centers=3)
 plot(t(dados$GSE51808),col=km3$cluster)
+```
 
+PAM: (Partitioning around medoids)
+Assim como o kmeans, o pam eh um metodo nao supervisionado de particionamento 
+porem, diferentemente do kmeans que adota medias como centros o pam define um
+ponto da amostra como centro. Alem disso, por trabalhar com uma matriz de 
+dissimilaridades e minimizar a soma de dissimilirades ao inves das soma das 
+distancias euclidianas o pam se torna uma versao mais robusta do que o kmeans.
+```{r}
 p <- cluster::pam(t.dados, k=2)
-plot()
+plot(t.dados,col=p$clustering, pch=19, xlab=NA, ylab=NA)
 
 p3 <- cluster::pam(t.dados, k=3)
+plot(t.dados,col=p3$clustering, pch=19, xlab=NA, ylab=NA)
+```{r}
+
+
+```{r}
+d = dist(t.dados)
+hc <- hclust(d)
+plot(hc)
 
 transDi <- cluster::diana(t.dados))
-
+plot(transDi)
+```
 
 
 pca <- prcomp(as.matrix(t.dados)), cor=T, scale=F)
@@ -90,14 +147,15 @@ geom_point(aes(pca.PC1, pca.PC2, colour = species,
 plot(p2)
 
 
-Apêndice
-write.table(x=dfMeta, 
-            append=F, 
-            sep="\t",
-            col.names=T,
-            file="tabelaDeCores.txt",
-            row.names=F,	
-            quote=F)
+Apêndices
+```{r}
+write.table(x=dfMeta, # dado a ser escrito
+            append=F, # boleano se o arq ja existe escreve linhas extras (T) ou sobrescreve (F)
+            sep="\t", # o tipo do separador, nesse caso \t indica tab
+            col.names=T, # boleano para os nomes das colunas
+            file="tabelaDeCores.txt", # nome do arquivo
+            row.names=F, # boleano para os nomes das linhas
+            quote=F) # boleano para presenca de aspas
 
 write.table(x=km$cluster, 
             append=F, 
@@ -114,7 +172,7 @@ write.table(x=p$clustering,
             file="pam_k2_clusters.txt",
             row.names=T,
             quote=F)
-
+```
 df.t.dados <- data.frame(Species=dfMeta2$Species, t.dados)
 
 lda.dados <- lda(formula = Species ~ ., 
@@ -123,28 +181,3 @@ lda.dados <- lda(formula = Species ~ .,
 lda.dados$prior
 #plot bonito
 
-
-library(gplots)
-heatmap.2(
-    #as.matrix(temps), 
-    as.matrix(t.dados),
-#    dendrogram=TRUE,
-    na.rm=TRUE,
-        scale="none",
-        #RowSideColor=colors.l,
-        #ColSideColors=colors.l.1,
-        #col=jet.colors(75),
-        key=FALSE,
-        symkey=FALSE,
-        density.info="none",
-        trace="none",
-        Rowv=TRUE,
-        Colv=NA,
-        cexRow=1,
-        cexCol=0.6,
-        keysize=1,
-#       dendrogram=TRUE,
-        #main = "nondel vs control"
-        #labCol=NA
-        #labRow=NA
-) 
