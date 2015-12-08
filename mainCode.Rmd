@@ -1,87 +1,36 @@
-# Bem vindo ao Codigo Principal do nosso projeto
-
+Bem vindo ao Codigo Principal do nosso projeto
 Neste aquivo voce encontra um guideline para fazer o download de seus dados de interesse.
-
--------------------------------
-Rode os seguintes comandos no seu R favorito. Nos estamos usando oficialmente 
-a versao 3.0.2 na plataforma i686-pc-linux-gnu (32-bit) para rodar nossos 
-testes. Tambem testamos na plataforma x86_64-pc-linux-gnu (64-bit) pelo site
-do [Koding] (https://koding.com)
-
-Para carregar as bibliotecas necessarias no R e as funcoes descritas nesse projeto use:
-(lembre-se que se tiver usando o linux eh preciso instalar as bibliotecas Curl e XML
-na sua maquina, voce pode ver na sessao [IMPORTANTE] (https://github.com/jtemporal/recDePadroes2015/blob/master/README.md)
-os comandos para fazer isso)
-```{r}
+________________________________________
+Rode os seguintes comandos no seu R favorito. Nos estamos usando oficialmente a versao 3.0.2 na plataforma i686-pc-linux-gnu (32-bit) para rodar nossos testes. Tambem testamos na plataforma x86_64-pc-linux-gnu (64-bit) pelo site doKoding
+Para carregar as bibliotecas necessarias no R e as funcoes descritas nesse projeto use: (lembre-se que se tiver usando o linux eh preciso instalar as bibliotecas Curl e XML na sua maquina, voce pode ver na sessao IMPORTANTE os comandos para fazer isso)
 source("Requirements.R")
 source("funcoes/Functions.R")
-```
-
-Para continuar listaremos em um vetor todos os estudos que queremos. Como
-exemplo usaremos um artigo sobre Degue que pode ser encontrado [nesse link](http://www.ncbi.nlm.nih.gov/pmc/articles/PMC4116428/)
-e os dados podem ser obtidos [nesse link aqui](http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE51808).
-
-No nosso estudo teste, o ID que nos leva ao arquivo 'matrix' eh GSE51808. 
-Atribuindo ele como uma string a um vetor (que vamos carinhosamente chamar de gse)
-e usando as seguintes funcoes, nao podemos fazer o download do arquivo
-e ler os dados em um objeto com o mesmo nome do ID do estudo.
-
-- Criando o vetor:
-```{r}
+Para continuar listaremos em um vetor todos os estudos que queremos. Como exemplo usaremos um artigo sobre Degue que pode ser encontrado nesse link e os dados podem ser obtidos nesse link aqui.
+No nosso estudo teste, o ID que nos leva ao arquivo 'matrix' eh GSE51808. Atribuindo ele como uma string a um vetor (que vamos carinhosamente chamar de gse) e usando as seguintes funcoes, nao podemos fazer o download do arquivo e ler os dados em um objeto com o mesmo nome do ID do estudo.
+•	Criando o vetor:
 gse <- "GSE51808"
-```
-- Obtendo o link para download:
-```{r}
+•	Obtendo o link para download:
 link <- getLinkDownloadMatrix(gse)
-```
-- Fazendo o download:
-
-(aqui voce devera obter uma mensagem de sucesso quando o download termina
-(Se voce estiver usando o GUI do R no windows pode ser que ele mostre um aviso
-pedindo permissao para fazer o download, eh soh aceitar)
-```{r}
+•	Fazendo o download:
+(aqui voce devera obter uma mensagem de sucesso quando o download termina (Se voce estiver usando o GUI do R no windows pode ser que ele mostre um aviso pedindo permissao para fazer o download, eh soh aceitar)
 downloadMatrix(link)
-```
-- Lendo os dados:
-```{r}
+•	Lendo os dados:
 dados <- readMyData(gse)
-```
-O objeto dados eh do tipo lista e cada nivel correspondera a um estudo (caso
-voce tenha mais de um estudo). Cada nevel ao inves de seguir o padrao 1, 2..
-eh nomeado seguindo o nome do estudo correspondente.
-Entao para checar o comecinho da matriz podemos fazer
-```{r}
-dados$GSE51808[1:6,1:3]
-```
-ou usar o indice do nivel da lista
-```{r}
+Usar o indice do nivel da lista
 dados[[1]][1:6,1:3]
-```
-Cada coluna em dados$GES51808 corresponde a uma das 56 amostras que foram 
-utilizadas no artigo.
-
-Vamos agora categorizar-las. Primeiro vamos fazer um vetor com as categorias de
-pacientes, no nosso estudo os pacientes podem ser um dos quatro tipos:
-- Convalescent (paciente em recuperacao)
-- Dengue Fever (com febre)
-- Dengue Hemorrhagic Fever (com febre hemorragica)
-- Healthy Control (controles saudaveis)
-```{r}
+Cada coluna em dados$GES51808 corresponde a uma das 56 amostras que foram utilizadas no artigo.
+Vamos agora categorizar-las. Primeiro vamos fazer um vetor com as categorias de pacientes, no nosso estudo os pacientes podem ser um dos quatro tipos:
+•	Convalescent (paciente em recuperacao)
+•	Dengue Fever (com febre)
+•	Dengue Hemorrhagic Fever (com febre hemorragica)
+•	Healthy Control (controles saudaveis)
 categoria <- c("Convalescent", "Healthy control", "Dengue Fever", "Dengue Hemorrhagic Fever")
-```
 Agora vamos criar um data.frame com as informacoes sobre as amostras por exemplo:
-- o ID GSM
-- o paciente que a amostra foi recolhida
-```{r}
+•	o ID GSM
+•	o paciente que a amostra foi recolhida
 metadados <- doMeta(gse)
-dfMeta <- as.data.frame(metadados$GSE51808)
-```
-Aqui voce pode definir manualmente as cores para os tipos de paciente ou
-deixar que a funcao doColourPalette faca isso para voce automaticamente
-(olhe a documentacao dessa funcao para maiores detalhes como a quais colunas df
-deve conter).
-
-```{r}
+dfMeta <- as.data.frame(metadados[[1]])
+Aqui voce pode definir manualmente as cores para os tipos de paciente ou deixar que a funcao doColourPalette faca isso para voce automaticamente (olhe a documentacao dessa funcao para maiores detalhes como a quais colunas df deve conter).
 # Manualmente:
 coloring <- sample(colours(),4)
 # lembre-se: vocÃª pode tambÃ©m definir as cores para o plot escolhendo-as
@@ -89,10 +38,7 @@ coloring <- sample(colours(),4)
 dfMeta <- doColourPalette(dfMeta, categoria, coloring) # warnings sÃ£o esperados
 # Automaticamente:
 dfMeta <- doColourPalette(dfMeta,categoria)
-```
-
 PCA: Falta terminar (automatizar)
-```{r}
 km <- kmeans(t(dados$GSE51808), centers=2)
 plot(t(dados$GSE51808),col=km$cluster)
 
@@ -104,29 +50,26 @@ plot()
 
 p3 <- cluster::pam(t.dados, k=3)
 
-transDi <- cluster::diana(t(dados$GSE51808))
-hc <- as.dendrogram(transDi)
+transDi <- cluster::diana(t.dados))
 
 
 
-pca <- prcomp(as.matrix(t(dados$GSE51808)), cor=T, scale=F)
+pca <- prcomp(as.matrix(t.dados)), cor=T, scale=F)
 pairs(pca$x[,1:3], col=dfMeta$col, pch=19)
 plot(
     pca$x,
     col=dfMeta$col,
     pch=19,
-    main = "PCA hipotetico2",
+    main = "PCA",
     xlab=paste0("PC1: ", summary(pca)$importance[2,1]*100, "%"),
     ylab=paste0("PC2: ", summary(pca)$importance[2,2]*100, "%")
 )
 legend(
-    "bottomleft", pch=rep(19,length(coloring)),
+    "top", pch=rep(19,length(coloring)),
     col=coloring,
     legend=categoria
 )
-```
 Tambem podemos plotar o PCA usando o pacote ggplot com o código abaixo
-```{r}
 dfMeta2 <- dfMeta
 dfMeta2$Species <- NA
 
@@ -147,11 +90,61 @@ geom_point(aes(pca.PC1, pca.PC2, colour = species,
 plot(p2)
 
 
-```
-Por questoes que vamos explicar mais tarde, vamos separar uma amostra de cada
-tipo e "tirar" elas da nossa matriz principal. Num estudo real voce nao vai
-precisar rodar as linhas a seguir.
-```{r}
+Apêndice
+write.table(x=dfMeta, 
+            append=F, 
+            sep="\t",
+            col.names=T,
+            file="tabelaDeCores.txt",
+            row.names=F,	
+            quote=F)
 
-```
+write.table(x=km$cluster, 
+            append=F, 
+            sep="\t",
+            col.names=F,
+            file="kmeans_k2_clusters.txt",
+            row.names=T,
+            quote=F)
 
+write.table(x=p$clustering, 
+            append=F, 
+            sep="\t",
+            col.names=F,
+            file="pam_k2_clusters.txt",
+            row.names=T,
+            quote=F)
+
+df.t.dados <- data.frame(Species=dfMeta2$Species, t.dados)
+
+lda.dados <- lda(formula = Species ~ ., 
+                 data = df.t.dados, 
+
+lda.dados$prior
+#plot bonito
+
+
+library(gplots)
+heatmap.2(
+    #as.matrix(temps), 
+    as.matrix(t.dados),
+#    dendrogram=TRUE,
+    na.rm=TRUE,
+        scale="none",
+        #RowSideColor=colors.l,
+        #ColSideColors=colors.l.1,
+        #col=jet.colors(75),
+        key=FALSE,
+        symkey=FALSE,
+        density.info="none",
+        trace="none",
+        Rowv=TRUE,
+        Colv=NA,
+        cexRow=1,
+        cexCol=0.6,
+        keysize=1,
+#       dendrogram=TRUE,
+        #main = "nondel vs control"
+        #labCol=NA
+        #labRow=NA
+) 
