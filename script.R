@@ -21,6 +21,7 @@ dfMeta <- doColourPalette(dfMeta, categoria, coloring)
 
 t.dados <- t(dados[[1]])
 
+# plots
 km <- kmeans(t.dados, centers=2)
 pdf("kmeans2centers.pdf")
 plot(t.dados,col=km$cluster, pch=19, xlab=NA, ylab=NA)
