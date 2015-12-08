@@ -100,13 +100,16 @@ p3 <- cluster::pam(t.dados, k=3)
 plot(t.dados,col=p3$clustering, pch=19, xlab=NA, ylab=NA)
 ```{r}
 
-
+Cluster hierarquico: hclust
 ```{r}
 d = dist(t.dados)
 hc <- hclust(d)
 plot(hc)
+```
 
-transDi <- cluster::diana(t.dados))
+Cluster hierarquico: diana
+```{r}
+di <- cluster::diana(t.dados))
 plot(transDi)
 ```
 

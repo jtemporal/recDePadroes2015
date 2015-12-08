@@ -42,9 +42,9 @@ pdf("pam3centers.pdf")
 plot(t.dados,col=p3$cluster, pch=19, xlab=NA, ylab=NA)
 dev.off()
 
-transDi <- cluster::diana(t.dados)
+di <- cluster::diana(t.dados)
 pdf("diana.pdf")
-plot(transDi)
+plot(di)
 dev.off()
 
 d = dist(t.dados)
