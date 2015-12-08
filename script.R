@@ -140,37 +140,3 @@ write.table(x=p$clustering,
             file="pam_k2_clusters.txt",
             row.names=T,
             quote=F)
-
-df.t.dados <- data.frame(Species=dfMeta2$Species, t.dados)
-
-lda.dados <- lda(formula = Species ~ ., 
-                 data = df.t.dados, 
-
-lda.dados$prior
-#plot bonito
-
-
-library(gplots)
-heatmap.2(
-    #as.matrix(temps), 
-    as.matrix(t.dados),
-#    dendrogram=TRUE,
-    na.rm=TRUE,
-        scale="none",
-        #RowSideColor=colors.l,
-        #ColSideColors=colors.l.1,
-        #col=jet.colors(75),
-        key=FALSE,
-        symkey=FALSE,
-        density.info="none",
-        trace="none",
-        Rowv=TRUE,
-        Colv=NA,
-        cexRow=1,
-        cexCol=0.6,
-        keysize=1,
-#       dendrogram=TRUE,
-        #main = "nondel vs control"
-        #labCol=NA
-        #labRow=NA
-)
