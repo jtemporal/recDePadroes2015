@@ -52,7 +52,7 @@ plot(di)
 # dev.off()
 
 # hclust
-d = dist(t.dados)
+d <- dist(t.dados)
 hc <- hclust(d)
 #pdf("hclust.pdf")
 plot(hc)
@@ -92,6 +92,13 @@ plot(
 )
 # dev.off()
 
+plot3d(pca$x[,1:3], size=2, col=dfMeta$col, type='s')
+movie3d(spin3d(), fps=60, duration=10, convert=F, 
+    dir = "C:/Users/JessicaTemporal/Dropbox/2015 Projeto/tmp/1to3/prog_all_noCLP", top = T) # try convert=TRUE
+plot3d(pca$x[,c(1,3,4)], size=2, col=dfMeta$col, type='s')
+movie3d(spin3d(), fps=60, duration=10, convert=F, 
+    dir = "C:/Users/JessicaTemporal/Dropbox/2015 Projeto/tmp/1to3/prog_all_noCLP", top = T) # try convert=TRUE
+
 # ploting pca usando o ggplot
 dfMeta2 <- dfMeta
 dfMeta2$Species <- NA
@@ -100,9 +107,9 @@ for (i in 1:length(categoria)) {
     dfMeta2$Species[grep(categoria[i], dfMeta2[,2])] = categoria[i]
 }
 
-dataset = data.frame(species = dfMeta2[,"Species"], pca = pca$x)
+dataset <- data.frame(species = dfMeta2[,"Species"], pca = pca$x)
 
-prop.pca = pca$sdev^2/sum(pca$sdev^2)
+prop.pca <- pca$sdev^2/sum(pca$sdev^2)
 
 p2 <- ggplot(dataset) + 
 geom_point(aes(pca.PC1, pca.PC2, colour = species, 
@@ -113,8 +120,6 @@ geom_point(aes(pca.PC1, pca.PC2, colour = species,
 # pdf("pca_with_ggplot.pdf")
 plot(p2)
 # dev.off()
-
-
 
 # gerando apendices
 write.table(x=dfMeta, # dado a ser escrito

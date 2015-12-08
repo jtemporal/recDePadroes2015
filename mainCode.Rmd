@@ -113,7 +113,8 @@ di <- cluster::diana(t.dados))
 plot(transDi)
 ```
 
-
+Analise de componentes principais: PCA
+```{r}
 pca <- prcomp(as.matrix(t.dados)), cor=T, scale=F)
 pairs(pca$x[,1:3], col=dfMeta$col, pch=19)
 plot(
@@ -153,7 +154,7 @@ geom_point(aes(pca.PC1, pca.PC2, colour = species,
 plot(p2)
 ```
 
-Apendices
+Para gerar os apendices
 ```{r}
 write.table(x=dfMeta, # dado a ser escrito
             append=F, # boleano se o arq ja existe escreve linhas extras (T) ou sobrescreve (F)
@@ -179,11 +180,28 @@ write.table(x=p$clustering,
             row.names=T,
             quote=F)
 ```
-df.t.dados <- data.frame(Species=dfMeta2$Species, t.dados)
 
-lda.dados <- lda(formula = Species ~ ., 
-                 data = df.t.dados, 
+Algo extra: PCA 3D
+Eh possivel gerar um grafico com os tres primeiros componentes principais
+com alguns comandos e um pacote em R e umas duas linhas de codigo para rodar no
+terminal. Eles sao os descritos abaixo.
+Em R:
+```{r}
+plot3d(pca$x[,1:3], size=2, col=dfMeta$col, type='s')
+movie3d(spin3d(), fps=60, duration=10, convert=F, 
+    dir = "C:/Users/JessicaTemporal/Dropbox/2015 Projeto/tmp/1to3/prog_all_noCLP", top = T) # try convert=TRUE
+plot3d(pca$x[,c(1,3,4)], size=2, col=dfMeta$col, type='s')
+movie3d(spin3d(), fps=60, duration=10, convert=F, 
+    dir = "C:/Users/JessicaTemporal/Dropbox/2015 Projeto/tmp/1to3/prog_all_noCLP", top = T) # try convert=TRUE
+```
+e no seu terminal dentro da pasta que contem as imagens geradas pelas linhas acima.
+```
+ffmpeg -f image2 -r 30 -pattern_type glob -i '*.png' pca_3D_1to3_pcs.mp4
 
-lda.dados$prior
-#plot bonito
+#
+ffmpeg -f image2 -r 30 -pattern_type glob -i '*.png' pca_3D_1_3_4_pcs.mp4
 
+```
+Importante lembrar que o fffmpeg é um pacote do linux e precisa ser instalado, 
+pode conferir como instalar o ffmpeg [nesse link](http://www.vivaolinux.com.br/dica/FFmpeg-no-Ubuntu-1404-64-bits) 
+ou seguir as informacoes do [site oficial](https://www.ffmpeg.org/) do ffmpeg
