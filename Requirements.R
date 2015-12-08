@@ -17,3 +17,10 @@ for(i in seq_along(packagesList)){
 }
 
 # end of installation and loading process
+
+# Requirements for Linux
+
+# libcurl4-openssl-dev
+
+# libxml2-dev
+

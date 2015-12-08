@@ -1,2 +1,0 @@
-#README
-some other files
