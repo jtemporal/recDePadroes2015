@@ -22,45 +22,50 @@ dfMeta <- doColourPalette(dfMeta, categoria, coloring)
 t.dados <- t(dados[[1]])
 
 # plots
+# to generate the pdfs uncomment the line above and the one under the plor line
+# kmeans
 km <- kmeans(t.dados, centers=2)
-pdf("kmeans2centers.pdf")
+# pdf("kmeans2centers.pdf")
 plot(t.dados,col=km$cluster, pch=19, xlab=NA, ylab=NA)
-dev.off()
+# dev.off()
 
 km3 <- kmeans(t.dados, centers=3)
-pdf("kmeans3centers.pdf")
+# pdf("kmeans3centers.pdf")
 plot(t.dados,col=km3$cluster, pch=19, xlab=NA, ylab=NA)
-dev.off()
+# dev.off()
 
+# pam
 p <- cluster::pam(t.dados, k=2)
-pdf("pam2centers.pdf")
+# pdf("pam2centers.pdf")
 plot(t.dados,col=p$clustering, pch=19, xlab=NA, ylab=NA)
-dev.off()
+# dev.off()
 
 p3 <- cluster::pam(t.dados, k=3)
-pdf("pam3centers.pdf")
+# pdf("pam3centers.pdf")
 plot(t.dados,col=p3$cluster, pch=19, xlab=NA, ylab=NA)
-dev.off()
+# dev.off()
 
+# diana
 di <- cluster::diana(t.dados)
-pdf("diana.pdf")
+# pdf("diana.pdf")
 plot(di)
-dev.off()
+# dev.off()
 
+# hclust
 d = dist(t.dados)
 hc <- hclust(d)
-pdf("hclust.pdf")
+#pdf("hclust.pdf")
 plot(hc)
-dev.off()
+#dev.off()
 
-#pca
+# pca
 pca <- prcomp(as.matrix(t.dados), cor=T, scale=F)
 
-pdf("pca-pairs-1to3.pdf")
+#pdf("pca-pairs-1to3.pdf")
 pairs(pca$x[,1:3], col=dfMeta$col, pch=19)
-dev.off()
+#dev.off()
 
-pdf("pca-1e2.pdf")
+# pdf("pca-1e2.pdf")
 plot(
     pca$x,
     col=dfMeta$col,
@@ -74,9 +79,9 @@ legend(
     col=coloring,
     legend=categoria
 )
-dev.off()
+# dev.off()
 
-pdf("pca-1e2-cluster-k2.pdf")
+# pdf("pca-1e2-cluster-k2.pdf")
 plot(
     pca$x,
     col=km$cluster,
@@ -85,15 +90,15 @@ plot(
     xlab=paste0("PC1: ", summary(pca)$importance[2,1]*100, "%"),
     ylab=paste0("PC2: ", summary(pca)$importance[2,2]*100, "%")
 )
-dev.off()
+# dev.off()
 
-# plotando pca usando o ggplot
+# ploting pca usando o ggplot
 dfMeta2 <- dfMeta
 dfMeta2$Species <- NA
 
 for (i in 1:length(categoria)) {
     dfMeta2$Species[grep(categoria[i], dfMeta2[,2])] = categoria[i]
-    }
+}
 
 dataset = data.frame(species = dfMeta2[,"Species"], pca = pca$x)
 
@@ -105,8 +110,9 @@ geom_point(aes(pca.PC1, pca.PC2, colour = species,
   labs(x = paste("PC1 (", scales::percent(prop.pca[1]), ")", sep=""),
        y = paste("PC2 (", scales::percent(prop.pca[2]), ")", sep=""))
 
+# pdf("pca_with_ggplot.pdf")
 plot(p2)
-
+# dev.off()
 
 
 
