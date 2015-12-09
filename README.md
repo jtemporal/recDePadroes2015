@@ -28,6 +28,8 @@ Dendrograma gerado com a funcao hclust
 Dendrograma gerado com a funcao diana
 ![dendroDiana](https://github.com/jtemporal/recDePadroes2015/blob/master/plots/dendro-Diana.png)
 
+PCA 3D
+![3d](https://youtu.be/8B2cN3rDB0E)
 
 
 -------------------

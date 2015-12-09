@@ -207,10 +207,10 @@ Em R:
 ```{r}
 plot3d(pca$x[,1:3], size=2, col=dfMeta$col, type='s')
 movie3d(spin3d(), fps=60, duration=10, convert=F, 
-    dir = "C:/Users/JessicaTemporal/Dropbox/2015 Projeto/tmp/1to3/prog_all_noCLP", top = T) # try convert=TRUE
+    dir = "C:/Users/JessicaTemporal/Dropbox/2015 Projeto/tmp/1to3/prog_all_noCLP", top = T, ) 
 plot3d(pca$x[,c(1,3,4)], size=2, col=dfMeta$col, type='s')
 movie3d(spin3d(), fps=60, duration=10, convert=F, 
-    dir = "C:/Users/JessicaTemporal/Dropbox/2015 Projeto/tmp/1to3/prog_all_noCLP", top = T) # try convert=TRUE
+    dir = "recDePadroes2015/plots/3D/", top = T) # try convert=TRUE
 ```
 e no seu terminal dentro da pasta que contem as imagens geradas pelas linhas acima.
 ```
