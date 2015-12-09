@@ -4,13 +4,9 @@ Esse projeto teve como objetivo usar o conhecimento adquirido em sala de aula.
 
 Escolhemos dados de dengue disponiveis publicamente no banco de dados GEO.
 
--------------------
-Contribuidores:
--------------------
-* [Jessica Temporal](https://github.com/jtemporal)
-* [Raissa de F. Poch](https://github.com/raissapoch)
-* [Wilbert Dener](https://github.com/wilbertdener)
- 
+Para ver a versao user friendly do trabalho clique [aqui](https://github.com/jtemporal/recDePadroes2015/blob/master/mainCode.Rmd)
+e o código "seco" [aqui](https://github.com/jtemporal/recDePadroes2015/blob/master/script.R)
+
 
 Plots
 -------------------
@@ -36,6 +32,14 @@ Dendrograma gerado com a funcao hclust
 Dendrograma gerado com a funcao diana
 
 ![dendroDiana](https://github.com/jtemporal/recDePadroes2015/blob/master/plots/dendro-Diana-cloredLeaf.jpg)
+
+-------------------
+Contribuidores:
+-------------------
+* [Jessica Temporal](https://github.com/jtemporal)
+* [Raissa de F. Poch](https://github.com/raissapoch)
+* [Wilbert Dener](https://github.com/wilbertdener)
+ 
 
 
 -------------------
