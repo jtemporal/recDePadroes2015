@@ -3,6 +3,7 @@
 Esse projeto teve como objetivo usar o conhecimento adquirido em sala de aula.
 
 Escolhemos dados de dengue disponiveis publicamente no banco de dados GEO.
+
 -------------------
 Contribuidores:
 -------------------
@@ -13,6 +14,10 @@ Contribuidores:
 
 Plots
 -------------------
+PCA 3D com os 3 primeiros PCs pode ser encontrado [nesse link](https://youtu.be/8B2cN3rDB0E)
+
+PCA 3D com PCs 1, 3 e 4 pode ser encontrado [nesse link](https://youtu.be/IZK3VB4bxbs)
+
 PCA calculado pela funcao prcomp, PC1 x PC2
 ![pca](https://github.com/jtemporal/recDePadroes2015/blob/master/plots/pca-1com2-legendado.png)
 
@@ -29,10 +34,9 @@ Dendrograma gerado com a funcao hclust
 ![dendroHclust](https://github.com/jtemporal/recDePadroes2015/blob/master/plots/dendro-hclust-cloredLeaf.jpg)
 
 Dendrograma gerado com a funcao diana
+
 ![dendroDiana](https://github.com/jtemporal/recDePadroes2015/blob/master/plots/dendro-Diana-cloredLeaf.jpg)
 
-PCA 3D com os 3 primeiros PCs pode ser encontrado [nesse link](https://youtu.be/8B2cN3rDB0E)
-PCA 3D com PC 1 3 e 4 pode ser encontrado [nesse link](https://youtu.be/IZK3VB4bxbs)
 
 -------------------
 IMPORTANTE
