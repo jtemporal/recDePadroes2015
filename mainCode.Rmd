@@ -97,11 +97,11 @@ as medias sao proximas os grupos entre si devem possuir medias mais distantes.
 Sendo assim, o kmeans mede as distancias entre os centros usando o quadrado 
 das distancias euclidianas o que o torna um algoritmo custoso.
 ```{r}
-km <- kmeans(t(dados$GSE51808), centers=2)
-plot(t(dados$GSE51808),col=km$cluster)
+km <- kmeans(t.dados, centers=2)
+plot(t.dados,col=km$cluster)
 
-km3 <- kmeans(t(dados$GSE51808), centers=3)
-plot(t(dados$GSE51808),col=km3$cluster)
+km3 <- kmeans(t.dados, centers=3)
+plot(t.dados,col=km3$cluster)
 ```
 
 PAM: (Partitioning around medoids)
@@ -116,11 +116,24 @@ plot(t.dados,col=p$clustering, pch=19, xlab=NA, ylab=NA)
 
 p3 <- cluster::pam(t.dados, k=3)
 plot(t.dados,col=p3$clustering, pch=19, xlab=NA, ylab=NA)
-```{r}
+```
+
+Clusterizacao hierarquica pode ser de dois tipos:
+- Aglomerativa
+- Divisiva
 
 Cluster hierarquico: hclust
+
+O hclust eh um metodo de clusterizacao do tipo aglomerativo, ele comeca atribuindo
+cada amostra (observacao) em um cluster e depois vai juntando os clusters mais
+parecidos ate formar a arvore, particularmente essa funcao do R recebe uma
+matriz de dissimilaridades, aqui calculada por dist, que nada mais eh do que uma
+matriz que contem as distancias entre um par de amostras, essas distancias
+indicam o quanto parecida um par de amostras sao assim, amostras muito distantes
+sao consideradas muito diferentes enquanto amostras muito proximas sao consideradas
+muito parecidas.
 ```{r}
-d = dist(t.dados)
+d <- dist(t.dados)
 hc <- hclust(d)
 plot(hc)
 ```
@@ -133,7 +146,7 @@ plot(transDi)
 
 Analise de componentes principais: PCA
 ```{r}
-pca <- prcomp(as.matrix(t.dados)), cor=T, scale=F)
+pca <- prcomp(as.matrix(t.dados), cor=T, scale=F)
 pairs(pca$x[,1:3], col=dfMeta$col, pch=19)
 plot(
     pca$x,
@@ -157,11 +170,11 @@ dfMeta2$Species <- NA
 
 for (i in 1:length(categoria)) {
     dfMeta2$Species[grep(categoria[i], dfMeta2[,2])] = categoria[i]
-    }
+}
 
-dataset = data.frame(species = dfMeta2[,"Species"], pca = pca$x)
+dataset <- data.frame(species = dfMeta2[,"Species"], pca = pca$x)
 
-prop.pca = pca$sdev^2/sum(pca$sdev^2)
+prop.pca <- pca$sdev^2/sum(pca$sdev^2)
 
 p2 <- ggplot(dataset) + 
 geom_point(aes(pca.PC1, pca.PC2, colour = species, 
@@ -200,26 +213,38 @@ write.table(x=p$clustering,
 ```
 
 Algo extra: PCA 3D
-Eh possivel gerar um grafico com os tres primeiros componentes principais
-com alguns comandos e um pacote em R e umas duas linhas de codigo para rodar no
-terminal. Eles sao os descritos abaixo.
+
+Eh possivel gerar um grafico tridimensional com os tres primeiros componentes principais
+com alguns comandos e um pacote em R chamado rgl e duas linhas de codigo para rodar no
+terminal. Eles estao os descritos abaixo.
+
 Em R:
+
+Esses comandos iram:
+- Gerar o plot tridimensional interativo
+- Criar os frames para gerar o video 
+
+Atente para o fato que os frames sao criados e nomeados seguindo um padrao
+entao tome cuidado para um comando nao sobrescrever os frames do outro grafico.a
+Tambem note que os frames vao corresponder ao tamanho da janela do grafico,
+o que torna muito importante que voce maximize o tamanho da janela.
 ```{r}
-plot3d(pca$x[,1:3], size=2, col=dfMeta$col, type='s')
-movie3d(spin3d(), fps=60, duration=10, convert=F, 
+# gera o grafico
+rgl::plot3d(pca$x[,1:3], size=2, col=dfMeta$col, type='s')
+# produz os frames
+rgl::movie3d(rgl::spin3d(), fps=60, duration=10, convert=F, 
     dir = "C:/Users/JessicaTemporal/Dropbox/2015 Projeto/tmp/1to3/prog_all_noCLP", top = T, ) 
-plot3d(pca$x[,c(1,3,4)], size=2, col=dfMeta$col, type='s')
-movie3d(spin3d(), fps=60, duration=10, convert=F, 
+
+# gera o grafico
+rgl::plot3d(pca$x[,c(1,3,4)], size=2, col=dfMeta$col, type='s')
+# produz os frames
+rgl::movie3d(rgl::spin3d(), fps=60, duration=10, convert=F, 
     dir = "recDePadroes2015/plots/3D/", top = T) # try convert=TRUE
 ```
 e no seu terminal dentro da pasta que contem as imagens geradas pelas linhas acima.
 ```
-ffmpeg -f image2 -r 30 -pattern_type glob -i '*.png' pca_3D_1to3_pcs.mp4
-
-#
-ffmpeg -f image2 -r 30 -pattern_type glob -i '*.png' pca_3D_1_3_4_pcs.mp4
-
+ffmpeg -f image2 -r 30 -pattern_type glob -i '*.png' movie.mp4
 ```
-Importante lembrar que o fffmpeg é um pacote do linux e precisa ser instalado, 
+Importante lembrar que o ffmpeg é um pacote do linux e precisa ser instalado, 
 pode conferir como instalar o ffmpeg [nesse link](http://www.vivaolinux.com.br/dica/FFmpeg-no-Ubuntu-1404-64-bits) 
 ou seguir as informacoes do [site oficial](https://www.ffmpeg.org/) do ffmpeg
