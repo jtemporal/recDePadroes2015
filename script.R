@@ -1,6 +1,9 @@
 # script of main code
 # note that the study not specified to facilitate change in the code
 
+
+
+   
 source("Requirements.R")
 source("funcoes/Functions.R")
 
